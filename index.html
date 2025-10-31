@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>APGB - SUD Life Data Entry Portal</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    max-width: 760px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #F4F8FC;
+  }
+  .logo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 16px 14px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px rgba(50,80,180,0.05);
+  }
+  .logo-bar img {
+    max-height: 65px;
+    display: inline-block;
+    margin-right: 18px;
+    background: transparent;
+  }
+  .logo-bar .brand-text {
+    font-size: 2.0rem;
+    color: #1976d2;
+    font-weight: 700;
+    margin-left: 15px;
+    letter-spacing: .04em;
+  }
+  h2 {
+    text-align: center;
+    color: #388e3c;
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+  }
+  label {
+    font-weight: bold;
+    margin-top: 12px;
+    display: block;
+    font-size: 1.05rem;
+    color: #1a5fb4;
+  }
+  select, input, button {
+    width: 100%;
+    padding: 9px;
+    font-size: 1rem;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1.5px solid #dce7f7;
+    border-radius: 7px;
+    margin-bottom: 2px;
+  }
+  input[readonly] {
+    background-color: #e5ecf6;
+  }
+  .optional {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  button {
+    margin-top: 22px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 7px;
+    font-size: 1.09rem;
+    box-shadow: 0 2px 4px rgba(80,80,120,0.07);
+  }
+  .message {
+    margin-top: 17px;
+    font-weight: bold;
+    color: green;
+    font-size: 1.05rem;
+  }
+  .error {
+    color: #bf2e2e;
+  }
+</style>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* Reset default margins */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Common logo bar style */
+  .logo-bar {
+    background-color: grey;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* First logo (centered only) */
+  .logo-bar.top img {
+    height: 56.5px;
+    max-width: 100%;
+  }
+
+  /* Second logo bar with text + logo */
+  .logo-bar.bottom {
+    padding: 15px 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .logo-bar.bottom .brand-text {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+  }
+
+  .logo-bar.bottom img {
+    height: 60px;
+    max-width: 120px;
+  }
+
+  /* Responsive adjustments */
+  @media (min-width: 600px) {
+    .logo-bar.bottom {
+      flex-wrap: nowrap;
+    }
+    .logo-bar.bottom .brand-text {
+      flex: none;
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- First logo -->
+<div class="logo-bar top">
+  <img src="https://dxwkpt4djlxwl.cloudfront.net/Logo_01_4d2e088760.svg" alt="SUD Life">
+</div>
+
+<!-- Second logo + text -->
+<div class="logo-bar bottom">
+  <span class="brand-text">SUD LIFE NEW BUSINESS PORTAL</span>
+  <img src="https://apgb.bank.in/public/img/logo/apgb-new.svg" alt="APGB">
+</div>
+
+</body>
+</html>
+
+
+<h2>Enter Policy Data - Select Region, Officer & Branch</h2>
+
+<form id="entryForm">
+  <label for="regionSelect">Region *</label>
+  <select id="regionSelect" required></select>
+
+  <label for="salesOfficerSelect">Sales Officer *</label>
+  <select id="salesOfficerSelect" required></select>
+
+  <label for="branchCodeSelect">Branch Code *</label>
+  <select id="branchCodeSelect" required></select>
+
+  <label for="branchName">Branch Name *</label>
+  <input type="text" id="branchName" name="branch_name" readonly required />
+
+  <label for="compositeCode">Composite Code *</label>
+  <input type="text" id="compositeCode" name="composite_code" readonly required />
+
+  <label for="regionField">Region *</label>
+  <input type="text" id="regionField" name="region" readonly required />
+
+  <label for="employeeId">Employee ID *</label>
+  <input type="text" id="employeeId" name="employee_id" readonly required />
+
+  <label for="policyEnteredDate">Policy Entered Date *</label>
+  <input type="date" id="policyEnteredDate" name="policy_entered_date" required />
+
+  <label for="applicationNumber">Application Number *</label>
+  <input type="text" id="applicationNumber" name="application_number" required />
+
+  <label for="customerName">Customer Name *</label>
+  <input type="text" id="customerName" name="customer_name" required />
+
+  <label for="mobileNumber">Mobile Number <span class="optional"></span></label>
+  <input type="tel" id="mobileNumber" name="mobile_number" pattern="[0-9]{10}" />
+
+  <label for="panNumber">PAN Number <span class="optional"></span></label>
+  <input type="text" id="panNumber" name="pan_number" maxlength="10" />
+
+  <label for="aadharNumber">Aadhar Number <span class="optional"></span></label>
+  <input type="text" id="aadharNumber" name="aadhar_number" maxlength="12" />
+
+  <label for="customerAccountNumber">Customer Account Number <span class="optional"></span></label>
+  <input type="text" id="customerAccountNumber" name="customer_account_number" />
+
+  <label for="typeOfDebit">Type of Debit *</label>
+  <select id="typeOfDebit" name="type_of_debit" required>
+    <option value="">Select Type of Debit</option>
+    <option value="Bank Branch Debit">Bank Branch Debit</option>
+    <option value="Online Transfer">Online Transfer</option>
+  </select>
+
+  <label for="insurancePremiumAmount">Insurance Premium Amount *</label>
+  <input type="number" id="insurancePremiumAmount" name="insurance_premium_amount" step="0.01" min="0" required />
+
+  <label for="transactionId">Transaction ID *</label>
+  <input type="text" id="transactionId" name="transaction_id" required />
+
+  <button type="submit">Submit</button>
+</form>
+
+<div class="message" id="message"></div>
+
+<script>
+  // Use the complete CSV content from Branch-Mapping.csv here
+  const csvData = `Sales Officer Name,Employee ID,Branch Name,Branch Code,Composite code,Region
+Giripurapu Ramanjaneyulu,41737,Tenali,7001,187001,Guntur,,Guntur
+Bandi China Kannaiah,40804,Utukuru,7002,187002,Narasaraopet,,Narasaraopet
+Chennam Srikanth,41475,Adigoppula,7003,187003,Narasaraopet,,Rajahmundry
+Borugadda Nagaraju,40017,Atchempeta (G),7004,187004,Narasaraopet,,Eluru
+Janga Naga Raju,40643,Savalyapuram,7005,187005,Narasaraopet,,Anantapuramu
+Battula Rajesh,40229,Yallamanda,7006,187006,Narasaraopet,,Kadapa
+Bandi China Kannaiah,40804,Zulakallu,7007,187007,Narasaraopet,,Kadiri
+Janga Naga Raju,40643,Kotcherla,7008,187008,Narasaraopet,,Kurnool
+Borugadda Nagaraju,40017,Komerapudi,7009,187009,Narasaraopet,,Nandyal
+Kadiyam Sekhar,41546,Etukuru,7010,187010,Guntur,,Markapur
+Nagandla Naveen,44556,Penumaka,7011,187011,Guntur,,Nellore
+Vacant-FLS-Narasaraopet 5,-,Kambahampadu,7012,187012,Narasaraopet,,Ongole
+Vacant-FLS-Narasaraopet 5,-,Sirigiripadu,7014,187014,Narasaraopet,,Rajampeta
+Bandi China Kannaiah,40804,Morjampadu,7015,187015,Narasaraopet,,GUDIVADA
+Kadiyam Sekhar,41546,Vatticherukuru,7016,187016,Guntur,,TIRUPATHI
+Pratapu Siva Pavan,45517,Donepudi,7017,187017,Guntur,,CHITTOOR
+Pratapu Siva Pavan,45517,Adavuladeevi,7018,187018,Guntur,,MADANAPALLE
+Chennam Srikanth,41475,Oppicherla,7019,187019,Narasaraopet,,VIJAYAWADA
+Vacant-FLS-Narasaraopet 5,-,Mutukuru,7020,187020,Narasaraopet,,Anakapalli
+Battula Rajesh,40229,Murikipudi,7021,187021,Narasaraopet,,Vizianagaram
+Battula Rajesh,40229,Narasaraopet,7022,187022,Narasaraopet,,Parvathipuram
+Chennam Srikanth,41475,Dachepalli,7023,187023,Narasaraopet,,Srikakulam
+Kadiyam Sekhar,41546,Yanamadala,7024,187024,Guntur,,Visakhapatnam
+Pavan Venkata Saikumar Thallam,44976,Pedaparimi,7025,187025,Guntur,,
+Bandi China Kannaiah,40804,Dodleru,7026,187026,Narasaraopet,,
+Battula Rajesh,40229,Solasa,7027,187027,Narasaraopet,,
+Bathula Leela Leela Ravi Krishna,42482,Mulakaluru,7028,187028,Narasaraopet,,
+Chennam Srikanth,41475,Kunkalagunta,7029,187029,Narasaraopet,,
+Chennam Srikanth,41475,Pulipadu,7030,187030,Narasaraopet,,
+Nitturi Srinivas,39738,Guntur,7031,187031,Guntur,,
+Battula Rajesh,40229,V R Palem,7032,187032,Narasaraopet,,
+Chennam Srikanth,41475,Gundlapalli,7033,187033,Narasaraopet,,
+Bandi China Kannaiah,40804,Piduguralla,7034,187034,Narasaraopet,,
+Giripurapu Ramanjaneyulu,41737,Vallabhapuram,7035,187035,Guntur,,
+Singa Reddy Veerareddy,40641,Valiveru,7037,187037,Guntur,,
+Janga Naga Raju,40643,Vinukonda,7038,187038,Narasaraopet,,
+Pratapu Siva Pavan,45517,Repalle,7039,187039,Guntur,,
+Pavan Venkata Saikumar Thallam,44976,Attaluru,7040,187040,Guntur,,
+Nagandla Naveen,44556,Vaddeswaram,7041,187041,Guntur,,
+Chennam Srikanth,41475,P. K. Gundla,7042,187042,Narasaraopet,,
+Bandi China Kannaiah,40804,Kubadpuram,7043,187043,Narasaraopet,,
+Vacant-FLS-Guntur 9,-,Bapatla,7044,187044,Guntur,,
+Vacant-FLS-Narasaraopet 5,-,Macherla,7046,187046,Narasaraopet,,
+Nagandla Naveen,44556,Mangalagiri,7047,187047,Guntur,,
+Borugadda Nagaraju,40017,Sattenapalli,7048,187048,Narasaraopet,,
+Battula Rajesh,40229,Chilakaluripet,7049,187049,Narasaraopet,,
+Singa Reddy Veerareddy,40641,Nidubrolu,7050,187050,Guntur,,
+Chennam Srikanth,41475,Karempudi,7051,187051,Narasaraopet,,
+Pratapu Siva Pavan,45517,Karlapalem,7052,187052,Guntur,,
+Giripurapu Ramanjaneyulu,41737,Nazarpet,7053,187053,Guntur,,
+Nitturi Srinivas,39738,Collectorate,7054,187054,Guntur,,
+Nitturi Srinivas,39738,R. Agraharam,7055,187055,Guntur,,
+Giripurapu Ramanjaneyulu,41737,Nagaram,7056,187056,Guntur,,
+Nitturi Srinivas,39738,Pedakakani,7057,187057,Guntur,,
+Singa Reddy Veerareddy,40641,Chebrole (G),7058,187058,Guntur,,
+Nagandla Naveen,44556,Tadepalli,7059,187059,Guntur,,
+Pavan Venkata Saikumar Thallam,44976,Vikas Public School,7060,187060,Guntur,,
+Giripurapu Ramanjaneyulu,41737,Duggirala,7061,187061,Guntur,,
+Pratapu Siva Pavan,45517,Bhattiprolu,7062,187062,Guntur,,
+Kadiyam Sekhar,41546,Pedanandipadu,7063,187063,Guntur,,
+Giripurapu Ramanjaneyulu,41737,Morrispet,7064,187064,Guntur,,
+Bathula Leela Leela Ravi Krishna,42482,Muppalla,7066,187066,Narasaraopet,,
+Kadiyam Sekhar,41546,Kakumanu,7067,187067,Guntur,,
+Singa Reddy Veerareddy,40641,Vemuru,7068,187068,Guntur,,
+Singa Reddy Veerareddy,40641,Edlapalli,7069,187069,Guntur,,
+Borugadda Nagaraju,40017,Ganapavaram,7070,187070,Narasaraopet,,
+Giripurapu Ramanjaneyulu,41737,Pedavadlapudi,7071,187071,Guntur,,
+Kadiyam Sekhar,41546,Perecharla,7072,187072,Guntur,,
+Nitturi Srinivas,39738,Gorantla,7073,187073,Guntur,,
+Pratapu Siva Pavan,45517,Pallekona,7074,187074,Guntur,,
+Nitturi Srinivas,39738,Takkellapadu,7075,187075,Guntur,,
+Singa Reddy Veerareddy,40641,Pedaravuru,7076,187076,Guntur,,
+Bandi China Kannaiah,40804,Janapadu,7077,187077,Narasaraopet,,
+Bandi China Kannaiah,40804,Brahmanapalli,7078,187078,Narasaraopet,,
+Borugadda Nagaraju,40017,Nandigama,7079,187079,Narasaraopet,,
+Pavan Venkata Saikumar Thallam,44976,Pedapalakaluru,7080,187080,Guntur,,
+Nagandla Naveen,44556,Nidamarru (G),7081,187081,Guntur,,
+Nagandla Naveen,44556,Atmakuru,7082,187082,Guntur,,
+Chennam Srikanth,41475,Jm Puram,7083,187083,Narasaraopet,,
+Giripurapu Ramanjaneyulu,41737,Chinaparimi,7084,187084,Guntur,,
+Vacant-FLS-Narasaraopet 5,-,Charlagudipadu,7085,187085,Narasaraopet,,
+Kadiyam Sekhar,41546,Prathipadu,7086,187086,Guntur,,
+Bathula Leela Leela Ravi Krishna,42482,Nudurupadu,7087,187087,Narasaraopet,,
+Vacant-FLS-Guntur 9,-,Peteru,7088,187088,Guntur,,
+Nagandla Naveen,44556,Rayapudi,7089,187089,Guntur,,
+Singa Reddy Veerareddy,40641,Mulpuru,7090,187090,Guntur,,
+Nagandla Naveen,44556,Thulluru,7091,187091,Guntur,,
+Nagandla Naveen,44556,Ananthavaram,7092,187092,Guntur,,
+Nagandla Naveen,44556,Undavalli,7093,187093,Guntur,,
+Kadiyam Sekhar,41546,Namburu,7094,187094,Guntur,,
+Kadiyam Sekhar,41546,Siripuram,7095,187095,Guntur,,
+Vacant-FLS-Guntur 1,-,Amaravathi,7096,187096,Guntur,,
+Bathula Leela Leela Ravi Krishna,42482,Allurivaripalem,7097,187097,Narasaraopet,,
+Bandi China Kannaiah,40804,Bellamkonda,7098,187098,Narasaraopet,,
+Donka Lakshmana Rao,44542,Rajahmundry,7102,187102,Rajahmundry,,
+Varasala Tanuja,44526,Kandikuppa,7103,187103,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Somavaram,7106,187106,Rajahmundry,,
+Varasala Tanuja,44526,Devaguptam,7108,187108,Rajahmundry,,
+Donka Lakshmana Rao,44542,Kandrakota,7110,187110,Rajahmundry,,
+Vacant-FLS-Rajahmundry 1,-,Valluru (E),7114,187114,Rajahmundry,,
+Donka Lakshmana Rao,44542,Peddapuram,7115,187115,Rajahmundry,,
+John Matthwes Bonthu,42157,Antharvedipalem,7116,187116,Eluru,,
+Vacant-FLS-Kakinada 1,-,Kakinada,7118,187118,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Narsipudi,7121,187121,Rajahmundry,,
+Vacant-FLS-Rajahmundry 1,-,Laxmipolavaram,7122,187122,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Chebrole (E),7123,187123,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Nadakuduru,7124,187124,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Geddanapalli,7126,187126,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,A. Kothapalli,7130,187130,Rajahmundry,,
+Donka Lakshmana Rao,44542,Srirangapatnam,7134,187134,Rajahmundry,,
+Varasala Tanuja,44526,Amalapuram,7136,187136,Rajahmundry,,
+John Matthwes Bonthu,42157,Razole,7139,187139,Eluru,,
+Vacant-FLS-Kakinada 1,-,Pithapuram,7141,187141,Rajahmundry,,
+Varasala Tanuja,44526,Mummidivaram,7143,187143,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Ramachandrapuram,7142,187142,Rajahmundry,,
+Donka Lakshmana Rao,44542,Gadala,7145,187145,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Rajapudi,7146,187146,Rajahmundry,,
+Donka Lakshmana Rao,44542,Kesavaram,7147,187147,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Kovvada,7149,187149,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Atchampeta (E),7150,187150,Rajahmundry,,
+Donka Lakshmana Rao,44542,A.V. Appa Rao Road,7151,187151,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Venturu,7154,187154,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,K.Gangavaram,7155,187155,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Munsabgari Centre,7156,187156,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Tuni,7157,187157,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Vetlapalem,7161,187161,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Polamuru (E),7164,187164,Rajahmundry,,
+Vacant-FLS-Rajahmundry 1,-,Choppella,7165,187165,Rajahmundry,,
+Donka Lakshmana Rao,44542,Diwancheruvu,7167,187167,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Ravulapalem,7169,187169,Rajahmundry,,
+Varasala Tanuja,44526,Kothapet,7170,187170,Rajahmundry,,
+Varasala Tanuja,44526,Ganti,7173,187173,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Bendapudi,7174,187174,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Komaripalem,7175,187175,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Sarpavaram,7179,187179,Rajahmundry,,
+Donka Lakshmana Rao,44542,Morampudi,7180,187180,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Veeravaram,7181,187181,Rajahmundry,,
+Donka Lakshmana Rao,44542,Burugupudi,7182,187182,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Kothuru,7183,187183,Rajahmundry,,
+Donka Lakshmana Rao,44542,Pathathungapadu,7184,187184,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Yeleswaram,7185,187185,Rajahmundry,,
+Vacant-FLS-Rajahmundry 1,-,Angara,7186,187186,Rajahmundry,,
+Varasala Tanuja,44526,Mulasthanam,7193,187193,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Panduru,7194,187194,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Virawada,7195,187195,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Gollaprolu,7196,187196,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Sankhavaram,7197,187197,Rajahmundry,,
+Vacant-FLS-Rajahmundry 1,-,Chintaluru,7198,187198,Rajahmundry,,
+John Matthwes Bonthu,42157,Ramaraju Lanka,7199,187199,Rajahmundry,,
+KUNA  PRAKASHRAJ,40160,Nidamarru (W),7204,187204,Eluru,,
+KUNA  PRAKASHRAJ,40160,Penumadam,7205,187205,Eluru,,
+KUNA  PRAKASHRAJ,40160,Eletipadu,7207,187207,Eluru,,
+KUNA  PRAKASHRAJ,40160,Medapadu,7209,187209,Eluru,,
+Vacant-FLS-Eluru 1,-,Gopannapalem,7211,187211,Eluru,,
+KUNA  PRAKASHRAJ,40160,Purushothapalli,7212,187212,Eluru,,
+Vacant-FLS-Eluru 1,-,Makkinavarigudam,7213,187213,Eluru,,
+Vacant-FLS-Eluru 1,-,Koppaka,7217,187217,Eluru,,
+KUNA  PRAKASHRAJ,40160,Pedatadepalli,7219,187219,Eluru,,
+John Matthwes Bonthu,42157,Chinakapavaram,7220,187220,Eluru,,
+KUNA  PRAKASHRAJ,40160,Valluru (W),7225,187225,Eluru,,
+Vacant-FLS-Eluru 1,-,Eluru,7227,187227,Eluru,,
+John Matthwes Bonthu,42157,Kalipatnam,7228,187228,Eluru,,
+John Matthwes Bonthu,42157,Polamuru (W),7229,187229,Eluru,,
+KUNA  PRAKASHRAJ,40160,Tirupathipuram,7231,187231,Eluru,,
+Vacant-FLS-Eluru 1,-,Agadalanka,7232,187232,Eluru,,
+Vacant-FLS-Eluru 3,-,Jangareddygudem,7235,187235,Eluru,,
+John Matthwes Bonthu,42157,Bhimavaram,7237,187237,Eluru,,
+KUNA  PRAKASHRAJ,40160,Tadepalligudem,7238,187238,Eluru,,
+John Matthwes Bonthu,42157,Palakol,7240,187240,Eluru,,
+Vacant-FLS-Eluru 1,-,Nayudugudem,7244,187244,Eluru,,
+Vacant-FLS-Eluru 3,-,Nallajerla,7248,187248,Eluru,,
+KUNA  PRAKASHRAJ,40160,Korumamidi,7252,187252,Eluru,,
+Vacant-FLS-Eluru 1,-,Tangellamudi,7253,187253,Eluru,,
+KUNA  PRAKASHRAJ,40160,Tanuku,7258,187258,Eluru,,
+KUNA  PRAKASHRAJ,40160,Nidadavole,7259,187259,Eluru,,
+Vacant-FLS-Eluru 1,-,Appanaveedu,7260,187260,Eluru,,
+John Matthwes Bonthu,42157,Akiveedu,7262,187262,Eluru,,
+John Matthwes Bonthu,42157,Vissakoderu,7263,187263,Eluru,,
+Vacant-FLS-Eluru 3,-,Koyyalagudem,7266,187266,Eluru,,
+Vacant-FLS-Eluru 1,-,Chintalapudi,7268,187268,Eluru,,
+KUNA  PRAKASHRAJ,40160,Kadiyadda,7271,187271,Eluru,,
+KUNA  PRAKASHRAJ,40160,Kovvuru,7272,187272,Eluru,,
+Vacant-FLS-Eluru 3,-,Dwaraka Tirumala,7276,187276,Eluru,,
+Vacant-FLS-Eluru 1,-,Sanivarapupeta,7277,187277,Eluru,,
+Vacant-FLS-Eluru 1,-,Lingapalem,7278,187278,Eluru,,
+Vacant-FLS-Eluru 1,-,Vijayarai,7287,187287,Eluru,,
+KUNA  PRAKASHRAJ,40160,Pentapadu,7288,187288,Eluru,,
+Vacant-FLS-Eluru 1,-,Pedavegi,7289,187289,Eluru,,
+Vacant-FLS-Eluru 3,-,Tadikalapudi,7290,187290,Eluru,,
+Vacant-FLS-Eluru 3,-,Pangidigudem,7291,187291,Eluru,,
+Vacant-FLS-Eluru 3,-,Devarapalli,7292,187292,Eluru,,
+John Matthwes Bonthu,42157,Kallakuru,7298,187298,Eluru,,
+John Matthwes Bonthu,42157,Manchili,7299,187299,Eluru,,
+Vacant-FLS-Eluru 3,-,G. Kothapalli,7301,187301,Eluru,,
+John Matthwes Bonthu,42157,Konithiwada,7302,187302,Eluru,,
+Vacant-FLS-Eluru 3,-,Telikicharla,7303,187303,Eluru,,
+Vacant-FLS-Eluru 3,-,Gollagudem,7304,187304,Eluru,,
+Vacant-FLS-Eluru 3,-,Borrampalem,7305,187305,Eluru,,
+Vacant-FLS-Eluru 3,-,Rangapuram,7306,187306,Eluru,,
+KUNA  PRAKASHRAJ,40160,Unagatla,7307,187307,Eluru,,
+Vacant-FLS-Eluru 1,-,Denduluru,7308,187308,Eluru,,
+Vacant-FLS-Eluru 1,-,Vatluru,7309,187309,Eluru,,
+KUNA  PRAKASHRAJ,40160,Dommeru,7310,187310,Eluru,,
+Vacant-FLS-Eluru 1,-,Dharmajigudem,7311,187311,Eluru,,
+John Matthwes Bonthu,42157,Losari,7312,187312,Eluru,,
+Vacant-FLS-Kakinada 1,-,Pedapudi,7401,187401,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Godarigunta,7402,187402,Rajahmundry,,
+Donka Lakshmana Rao,44542,Innispeta,7403,187403,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Kotananduru,7404,187404,Rajahmundry,,
+Donka Lakshmana Rao,44542,Lalitha Nagar,7405,187405,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Mandapeta,7406,187406,Rajahmundry,,
+Donka Lakshmana Rao,44542,Gokavaram,7407,187407,Rajahmundry,,
+Bylapudi Chiranjeevi,40291,Ontimamidi,7408,187408,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Gollavilli,7409,187409,Rajahmundry,,
+#N/A,#N/A,Pulletikurru,7410,-,Rajahmundry,,
+Vacant-FLS-Kakinada 1,-,Gollapalem,7411,187411,Rajahmundry,,
+#N/A,#N/A,Tatipaka,7412,-,Rajahmundry,,
+#N/A,#N/A,Durgada,7413,-,Rajahmundry,,
+#N/A,#N/A,VOMMANGI,7414,-,Rajahmundry,,
+Vacant-FLS-Narasaraopet 5,-,Rentachintala,7701,187701,Narasaraopet,,
+Giripurapu Ramanjaneyulu,41737,Kuppurao Colony,7702,187702,Guntur,,
+Borugadda Nagaraju,40017,Krosuru,7703,187703,Narasaraopet,,
+Pavan Venkata Saikumar Thallam,44976,Tadikonda,7704,187704,Guntur,,
+Nitturi Srinivas,39738,Ananthavarappadu,7705,187705,Guntur,,
+Nitturi Srinivas,39738,Launchester Road,7706,187706,Guntur,,
+Nitturi Srinivas,39738,Brundavan Gardens,7707,187707,Guntur,,
+Borugadda Nagaraju,40017,Vemuluripadu,7708,187708,Narasaraopet,,
+Giripurapu Ramanjaneyulu,41737,Pittalavanipalem,7709,187709,Guntur,,
+Janga Naga Raju,40643,Uppalapadu,7710,187710,Narasaraopet,,
+Pavan Venkata Saikumar Thallam,44976,Ponnekallu,7711,187711,Guntur,,
+Battula Rajesh,40229,Nadendla,7712,187712,Narasaraopet,,
+Singa Reddy Veerareddy,40641,Cherukupalli,7713,187713,Guntur,,
+Bandi China Kannaiah,40804,Pillutla,7714,187714,Narasaraopet,,
+Pavan Venkata Saikumar Thallam,44976,Nemalikallu,7715,187715,Guntur,,
+Vacant-FLS-Narasaraopet 5,-,Koppunuru,7716,187716,Narasaraopet,,
+Singa Reddy Veerareddy,40641,Suddapalli,7717,187717,Guntur,,
+Bandi China Kannaiah,40804,Pinnelli,7718,187718,Narasaraopet,,
+Bathula Leela Leela Ravi Krishna,42482,Sathuluru,7719,187719,Narasaraopet,,
+Singa Reddy Veerareddy,40641,Vellaturu,7720,187720,Guntur,,
+Battula Rajesh,40229,Kavuru,7721,187721,Narasaraopet,,
+Janga Naga Raju,40643,Inavolu,7722,187722,Narasaraopet,,
+Janga Naga Raju,40643,Ipur,7723,187723,Narasaraopet,,
+Kadiyam Sekhar,41546,Chamallamudi,7724,187724,Guntur,,
+Singa Reddy Veerareddy,40641,Kolluru,7725,187725,Guntur,,
+Giripurapu Ramanjaneyulu,41737,Peda Konduru,7726,187726,Guntur,,
+Battula Rajesh,40229,Pasumarru,7727,187727,Narasaraopet,,
+Kadiyam Sekhar,41546,Kantheru,7728,187728,Guntur,,
+Bathula Leela Leela Ravi Krishna,42482,Palapadu,7729,187729,Narasaraopet,,
+Nitturi Srinivas,39738,Budampadu,7730,187730,Guntur,,
+Bathula Leela Leela Ravi Krishna,42482,Kanuparru,7731,187731,Narasaraopet,,
+Bathula Leela Leela Ravi Krishna,42482,Lingamguntla,7732,187732,Narasaraopet,,
+Vacant-FLS-Narasaraopet 5,-,Paluvoi,7733,187733,Narasaraopet,,
+Vacant-FLS-Narasaraopet 5,-,Kandlakunta,7734,187734,Narasaraopet,,
+Janga Naga Raju,40643,Rompicherla,7735,187735,Narasaraopet,,
+Pavan Venkata Saikumar Thallam,44976,A. T Agraharam,7736,187736,Guntur,,
+Nitturi Srinivas,39738,Sivareddypalem,7737,187737,Guntur,,
+Giripurapu Ramanjaneyulu,41737,Chenchupeta,7738,187738,Guntur,,
+Janga Naga Raju,40643,Karumanchi,7739,187739,Narasaraopet,,
+Borugadda Nagaraju,40017,Lagadapadu,7740,187740,Narasaraopet,,
+Vacant-FLS-Narasaraopet 5,-,Gurazala,7741,187741,Narasaraopet,,
+Nagandla Naveen,44556,Didugu,7742,187742,Guntur,,
+Janga Naga Raju,40643,Vellatur,7743,187743,Narasaraopet,,
+Battula Rajesh,40229,Narasaraopeta Rural,7744,187744,Narasaraopet,,
+Bathula Leela Leela Ravi Krishna,42482,Ganapavaram(Cpt),7745,187745,Narasaraopet,,
+Chennam Srikanth,41475,Nakarikallu,7746,187746,Narasaraopet,,
+Vacant-FLS-Guntur 9,-,Railpeta,7747,187747,Guntur,,
+Pratapu Siva Pavan,45517,Chinapulivarru,7748,187748,Guntur,,
+Kadiyam Sekhar,41546,Old Guntur,7749,187749,Guntur,,
+Nitturi Srinivas,39738,Brodipet,7750,187750,Guntur,,
+Bathula Leela Leela Ravi Krishna,42482,Madala,7751,187751,Narasaraopet,,
+Borugadda Nagaraju,40017,113 Thalluru,7752,187752,Narasaraopet,,
+#N/A,#N/A,Arepalli Muppalla,7753,-,Narasaraopet,,
+#N/A,#N/A,RUPENAGUNTLA,7754,-,Narasaraopet,,
+#N/A,#N/A,Kesanapalli,7755,-,Narasaraopet,,
+#N/A,#N/A,75 Tyallur,7756,-,Narasaraopet,,
+#N/A,#N/A,Durgi,7757,-,Narasaraopet,,
+Alakunta Sanjivaraidu,46739,Anantapur Main,1002,181002,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Mudinayanipalli,1003,181003,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Nuthimadugu,1004,181004,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,A. Kondapuram,1006,181006,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Pamidi,1007,181007,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Rayalachervu,1009,181009,Anantapuramu,,
+Madhava Reddy Marala,46455,Gugudu,1012,181012,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Shettur,1016,181016,Anantapuramu,,
+Harijana Mahesh,46885,D. Hirehal,1017,181017,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Gummaghatta,1018,181018,Anantapuramu,,
+Harijana Mahesh,46885,Somalapuram,1019,181019,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Guntakal,1025,181025,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Peddapappur,1026,181026,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Putlur,1027,181027,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Kalyanadurg,1030,181030,Anantapuramu,,
+Harijana Mahesh,46885,Rayadurg,1031,181031,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Thimmapuram,1034,181034,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Bhoopasamudram,1036,181036,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Patha Kotha Chervu,1037,181037,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Cheemalavagupalli,1038,181038,Anantapuramu,,
+Madhava Reddy Marala,46455,Bandameedipalli,1039,181039,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Garladinne,1049,181049,Anantapuramu,,
+Harijana Mahesh,46885,Thagguparthy,1051,181051,Anantapuramu,,
+Madhava Reddy Marala,46455,B.Pappur,1052,181052,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Durdakunta,1054,181054,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Tarimala,1057,181057,Anantapuramu,,
+Madhava Reddy Marala,46455,Gandlaparthi,1058,181058,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Kudair,1059,181059,Anantapuramu,,
+Harijana Mahesh,46885,Raketla,1060,181060,Anantapuramu,,
+Harijana Mahesh,46885,Uddehal,1061,181061,Anantapuramu,,
+Harijana Mahesh,46885,Palthur,1062,181062,Anantapuramu,,
+Harijana Mahesh,46885,Uravakonda,1065,181065,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Eddulapalli,1067,181067,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Gadekal,1068,181068,Anantapuramu,,
+Harijana Mahesh,46885,Jallipalli,1069,181069,Anantapuramu,,
+Madhava Reddy Marala,46455,Anantapur - Ambedkar Road,1070,181070,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Anantapur - PTC,1071,181071,Anantapuramu,,
+Madhava Reddy Marala,46455,Narpala,1072,181072,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Gooty,1075,181075,Anantapuramu,,
+Yakkalur Mohammed Sohail,46738,Tadipatri,1077,181077,Anantapuramu,,
+Harijana Mahesh,46885,Kanekal,1080,181080,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Anantapur - Maruthinagar,1081,181081,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Anantapur - Nirmala Convent,1082,181082,Anantapuramu,,
+Madhava Reddy Marala,46455,Anantapur - Sai Junior College,1083,181083,Anantapuramu,,
+Madhava Reddy Marala,46455,Anantapur - Medical College,1084,181084,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Peddavadagur,1087,181087,Anantapuramu,,
+Madhava Reddy Marala,46455,Bukkarayasamudram,1088,181088,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Anantapur - Venugopalnagar,1089,181089,Anantapuramu,,
+Alakunta Sanjivaraidu,46739,Nagasamudram,1091,181091,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Enumuladoddi,1094,181094,Anantapuramu,,
+Vacant-FLS-Kalyanadurg,-,Gangavaram,1096,181096,Anantapuramu,,
+Harijana Mahesh,46885,Godiselapalli,1097,181097,Anantapuramu,,
+Lakshmanarao Battini,46687,Tapovanam,1101,181101,Anantapuramu,,
+Enukoti Sriharsha,46807,Beluguppa,1104,181104,Anantapuramu,,
+Burada Sai Rani,45948,Guntakal - Hanumesh Nagar,1106,181106,Anantapuramu,,
+Raviteja Madapala,45915,"Anantapur - 
+ Kalyanadurg Road",1107,181107,Anantapuramu,,
+Bhyri Prabhavati,46946,"Anantapur - 
+ Vidyuth Nagar",1108,181108,Anantapuramu,,
+Enukoti Sriharsha,46807,"Kalyanadurg - 
+ Valmiki Nagar",1109,181109,Anantapuramu,,
+Direct Non Core Branches TM CGGB,-,"Tadipatri - 
+ Sanjeeva Nagar",1110,181110,Anantapuramu,,
+Santhosh Kumar Sontena,46276,Rudrampeta,1114,181114,Anantapuramu,,
+Dharmana Rajesh,46740,Brahmasamudram,1120,181120,Anantapuramu,,
+Direct Non Core Branches TM CGGB,-,Bommanahal,1121,181121,Anantapuramu,,
+Enukoti Sriharsha,46807,Sanapa,1122,181122,Anantapuramu,,
+Raviteja Madapala,45915,Cholasamudram,1123,181123,Anantapuramu,,
+Enukoti Sriharsha,46807,Kambadur,1124,181124,Anantapuramu,,
+Kutagulla Chandrasekhar Reddy,46031,Veerapunayanipalli,2002,182002,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Valluru,2005,182005,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Vemula,2012,182012,Kadapa,,
+Keerthi Sumathi,46619,Kadapa Main,2013,182013,Kadapa,,
+Ganugapenta Mastan,43846,Korrapadu,2014,182014,Kadapa,,
+Ganugapenta Mastan,43846,Pedda Pasupula,2015,182015,Kadapa,,
+Ganugapenta Mastan,43846,Proddatur,2019,182019,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Vaimpalli,2022,182022,Kadapa,,
+Namala Sudharsan Babu,46557,Kondapuram,2023,182023,Kadapa,,
+Keerthi Sumathi,46619,Chintakommadinne,2037,182037,Kadapa,,
+Namala Sudharsan Babu,46557,Chinnaguruvalur,2038,182038,Kadapa,,
+Subbarayudu Obigalla,46470,Ramanapalli,2039,182039,Kadapa,,
+Ganugapenta Mastan,43846,Peddamudiyam,2040,182040,Kadapa,,
+Namala Sudharsan Babu,46557,Mylavaram,2041,182041,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Lingala,2042,182042,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Nallapureddypalli,2043,182043,Kadapa,,
+Namala Sudharsan Babu,46557,Kamalapuram,2057,182057,Kadapa,,
+Namala Sudharsan Babu,46557,Chilamakur,2067,182067,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Chakrayapet,2072,182072,Kadapa,,
+Keerthi Sumathi,46619,Pendlimarry,2082,182082,Kadapa,,
+Namala Sudharsan Babu,46557,Vaddirala,2095,182095,Kadapa,,
+Namala Sudharsan Babu,46557,Thondur,2101,182101,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Mochampet,2116,182116,Kadapa,,
+Ganugapenta Mastan,43846,Yerraguntla,2120,182120,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Alavalapadu,2123,182123,Kadapa,,
+Subbarayudu Obigalla,46470,Kotha Nellore,2124,182124,Kadapa,,
+Namala Sudharsan Babu,46557,Peddacheppali,2128,182128,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Ankalammagudur,2133,182133,Kadapa,,
+Ganugapenta Mastan,43846,Rajupalem,2137,182137,Kadapa,,
+Namala Sudharsan Babu,46557,Jammalamadugu,2138,182138,Kadapa,,
+Keerthi Sumathi,46619,Kadapa - Kagitalapenta,2140,182140,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Jayanagar Colony,2143,182143,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Simhadripuram,2144,182144,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Pulivendula,2145,182145,Kadapa,,
+Subbarayudu Obigalla,46470,Chennur,2151,182151,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Police Line,2156,182156,Kadapa,,
+Subbarayudu Obigalla,46470,Khajipet,2158,182158,Kadapa,,
+Namala Sudharsan Babu,46557,Muddanur,2159,182159,Kadapa,,
+Keerthi Sumathi,46619,Kadapa - Devuni Kadapa,2161,182161,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Nesco,2162,182162,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Yerramukkapalli,2164,182164,Kadapa,,
+Ganugapenta Mastan,43846,Gopavaram,2166,182166,Kadapa,,
+Ganugapenta Mastan,43846,Proddatur - Modampalli,2167,182167,Kadapa,,
+Ganugapenta Mastan,43846,Potladurti,2169,182169,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Nandimandalam,2172,182172,Kadapa,,
+Namala Sudharsan Babu,46557,Moragudi,2174,182174,Kadapa,,
+Ganugapenta Mastan,43846,Chapadu,2176,182176,Kadapa,,
+Keerthi Sumathi,46619,Kadapa - Nagarajupet,2177,182177,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Uruturu,2180,182180,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Ravindra Nagar,2183,182183,Kadapa,,
+Ganugapenta Mastan,43846,Proddatur - Gandhi Road,2184,182184,Kadapa,,
+Ganugapenta Mastan,43846,"Proddatur - 
+ NGOs Colony",2185,182185,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,"Pulivendula - 
+ Poola Angallu",2187,182187,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,"Vaimpalli - 
+ Four Roads Crossing",2188,182188,Kadapa,,
+Keerthi Sumathi,46619,"Kadapa - 
+ Ameen Peer Darga",2189,182189,Kadapa,,
+Namala Sudharsan Babu,46557,"Jammalamadugu - 
+ New Market Centre",2191,182191,Kadapa,,
+Namala Sudharsan Babu,46557,Mallela,2193,182193,Kadapa,,
+Subbarayudu Obigalla,46470,Kadapa - Mariapuram,2194,182194,Kadapa,,
+Namala Sudharsan Babu,46557,"Kamalapuram ""X"" Roads",2198,182198,Kadapa,,
+Ganugapenta Mastan,43846,Tangatur,2199,182199,Kadapa,,
+Kutagulla Chandrasekhar Reddy,46031,Velindandla,2200,182200,Kadapa,,
+K. A. Thousif,46737,Lepakshi,1001,181001,Kadiri,,
+Venkatesh Garidi,46032,Marala,1005,181005,Kadiri,,
+Vacant-FLS-Kadiri,-,Kalasamudram,1008,181008,Kadiri,,
+K. A. Thousif,46737,Kodikonda,1010,181010,Kadiri,,
+K. A. Thousif,46737,Rolla,1011,181011,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Ramapuram,1013,181013,Kadiri,,
+Venkatesh Garidi,46032,Nallamada,1014,181014,Kadiri,,
+Vacant-FLS-Kadiri,-,Obuladevaracheruvu,1015,181015,Kadiri,,
+Venkatesh Garidi,46032,Pedaballi,1020,181020,Kadiri,,
+Vacant-FLS-Kadiri,-,Gandlapenta,1021,181021,Kadiri,,
+Vacant-FLS-Kadiri,-,Nambulapoolakunta,1022,181022,Kadiri,,
+Venkatesh Garidi,46032,Pamudurthy,1023,181023,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Perur,1024,181024,Kadiri,,
+Pulasaneni Prathap Reddy,46342,N.S. Gate,1028,181028,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Dharmavaram,1029,181029,Kadiri,,
+Vacant-FLS-Kadiri,-,Kadiri Main,1032,181032,Kadiri,,
+Venkatesh Garidi,46032,Kanumukkala,1033,181033,Kadiri,,
+Venkatesh Garidi,46032,Puttaparthy,1035,181035,Kadiri,,
+Vacant-FLS-Kadiri,-,Nallagutlapalli,1040,181040,Kadiri,,
+Vacant-FLS-Kadiri,-,Talupula,1041,181041,Kadiri,,
+K. A. Thousif,46737,Madakasira,1042,181042,Kadiri,,
+Venkatesh Garidi,46032,Gorantla,1043,181043,Kadiri,,
+Venkatesh Garidi,46032,Talamarla,1044,181044,Kadiri,,
+Vacant-FLS-Kadiri,-,Gownivaripalli,1045,181045,Kadiri,,
+K. A. Thousif,46737,Neelakantapuram,1046,181046,Kadiri,,
+Vacant-FLS-Kadiri,-,Nallacheruvu,1047,181047,Kadiri,,
+K. A. Thousif,46737,Hemavathi,1048,181048,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Bathalapalli,1050,181050,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Dadithota,1053,181053,Kadiri,,
+K. A. Thousif,46737,Budili,1055,181055,Kadiri,,
+Vacant-FLS-Kadiri,-,Amadaguru,1056,181056,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Kanaganipalli,1063,181063,Kadiri,,
+Vacant-FLS-Kadiri,-,B. Kothapalli,1064,181064,Kadiri,,
+K. A. Thousif,46737,Peddamanthur,1066,181066,Kadiri,,
+Venkatesh Garidi,46032,Penukonda,1073,181073,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Mudigubba,1074,181074,Kadiri,,
+K. A. Thousif,46737,Hindupur,1076,181076,Kadiri,,
+Venkatesh Garidi,46032,Kothachervu,1078,181078,Kadiri,,
+K. A. Thousif,46737,Agali,1079,181079,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Mamillapalli,1085,181085,Kadiri,,
+Vacant-FLS-Kadiri,-,Rekkamanu,1086,181086,Kadiri,,
+Vacant-FLS-Kadiri,-,Kadiri - M.G. Road,1090,181090,Kadiri,,
+K. A. Thousif,46737,Kodur,1092,181092,Kadiri,,
+Vacant-FLS-Kadiri,-,Mohammadabad,1093,181093,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Chigicherla,1095,181095,Kadiri,,
+K. A. Thousif,46737,Basavanahalli,1098,181098,Kadiri,,
+K. A. Thousif,46737,Ratnagiri,1099,181099,Kadiri,,
+Pulasaneni Prathap Reddy,46342,Ramagiri,1100,181100,Kadiri,,
+Raviteja Madapala,45915,Vengalammacheruvu,1102,181102,Kadiri,,
+Dharmana Rajesh,46740,Dharmavarm Kothapeta,1103,181103,Kadiri,,
+Burada Sai Rani,45948,Vanavolu,1105,181105,Kadiri,,
+Direct Non Core Branches TM CGGB,-,"Hindupur -
+ Naneppa Nagar",1111,181111,Kadiri,,
+Raviteja Madapala,45915,"Hindupur -
+ RPGT Road",1112,181112,Kadiri,,
+Burada Sai Rani,45948,Narasimpalli,1113,181113,Kadiri,,
+Direct Non Core Branches TM CGGB,-,Kondakamarla,1115,181115,Kadiri,,
+Raviteja Madapala,45915,Guttur,1116,181116,Kadiri,,
+Raviteja Madapala,45915,Roddam,1118,181118,Kadiri,,
+Dharmana Rajesh,46740,Reddipalle,1119,181119,Kadiri,,
+Ganesh Angadi,46468,Adoni,3003,183003,Kurnool,,
+U Sekhar,45885,Parla,3004,183004,Kurnool,,
+Vijay Golla Bhaskar,46803,Kurnool Main,3009,183009,Kurnool,,
+Vijay Golla Bhaskar,46803,Nanoor,3011,183011,Kurnool,,
+Kuruva Linganna,46431,Nemakal,3016,183016,Kurnool,,
+Ganesh Angadi,46468,Alur,3021,183021,Kurnool,,
+Kuruva Linganna,46431,Devanakonda,3028,183028,Kurnool,,
+K Bala Bhargavi,46703,Peddathumbalam,3030,183030,Kurnool,,
+U Sekhar,45885,Kodumur,3034,183034,Kurnool,,
+K Bala Bhargavi,46703,Mantralayam,3036,183036,Kurnool,,
+Kuruva Linganna,46431,Ternekal,3047,183047,Kurnool,,
+Vijay Golla Bhaskar,46803,Gargeyapuram,3063,183063,Kurnool,,
+Kuruva Linganna,46431,Peravali,3066,183066,Kurnool,,
+K Bala Bhargavi,46703,Yemmiganur,3070,183070,Kurnool,,
+Vijay Golla Bhaskar,46803,Hussainapuram-K,3073,183073,Kurnool,,
+Kuruva Dinesh,46660,Kothakota,3074,183074,Kurnool,,
+U Sekhar,45885,Veldurthy,3075,183075,Kurnool,,
+Ganesh Angadi,46468,Halaharvi,3080,183080,Kurnool,,
+Kuruva Linganna,46431,Pathikonda,3081,183081,Kurnool,,
+Kuruva Linganna,46431,Tuggali,3084,183084,Kurnool,,
+Ganesh Angadi,46468,Hebbatam,3093,183093,Kurnool,,
+U Sekhar,45885,Polakal,3100,183100,Kurnool,,
+K Bala Bhargavi,46703,Tungabhadra,3103,183103,Kurnool,,
+Kuruva Linganna,46431,Jonnagiri,3105,183105,Kurnool,,
+Ganesh Angadi,46468,Peddakadabur,3119,183119,Kurnool,,
+K Bala Bhargavi,46703,Urukunda,3126,183126,Kurnool,,
+Kuruva Dinesh,46660,Daivamdinne,3127,183127,Kurnool,,
+Ganesh Angadi,46468,Badinehal,3129,183129,Kurnool,,
+Ganesh Angadi,46468,Kairuppala,3131,183131,Kurnool,,
+Vijay Golla Bhaskar,46803,Kurnool - Krishna Nagar,3136,183136,Kurnool,,
+U Sekhar,45885,Krishnagiri,3141,183141,Kurnool,,
+Ganesh Angadi,46468,Aspari,3142,183142,Kurnool,,
+Kuruva Dinesh,46660,Gudur,3149,183149,Kurnool,,
+K Bala Bhargavi,46703,Kosigi,3152,183152,Kurnool,,
+Vijay Golla Bhaskar,46803,Kurnool - Govt. General Hospital,3156,183156,Kurnool,,
+Kuruva Dinesh,46660,Kurnool - Poolabazar,3159,183159,Kurnool,,
+Kuruva Dinesh,46660,Kurnool - Sri Srija EM School,3162,183162,Kurnool,,
+Kuruva Dinesh,46660,Kurnool - Chennamma Circle (Kallur),3164,183164,Kurnool,,
+Ganesh Angadi,46468,Adoni - Mosque Street,3165,183165,Kurnool,,
+K Bala Bhargavi,46703,Yemmiganur - Siva Circle,3167,183167,Kurnool,,
+Vijay Golla Bhaskar,46803,Kurnool - Revenue Colony,3168,183168,Kurnool,,
+Kuruva Dinesh,46660,Kurnool - ZP Office Complex,3169,183169,Kurnool,,
+K Bala Bhargavi,46703,Halvi,3170,183170,Kurnool,,
+U Sekhar,45885,P. Kotakonda,3171,183171,Kurnool,,
+Kuruva Linganna,46431,Chintakunta,3172,183172,Kurnool,,
+Kuruva Linganna,46431,Hosur,3176,183176,Kurnool,,
+U Sekhar,45885,Ulchala,3177,183177,Kurnool,,
+K Bala Bhargavi,46703,H.Muravani,3178,183178,Kurnool,,
+U Sekhar,45885,Chityala,3179,183179,Kurnool,,
+Kuruva Dinesh,46660,Panchalingala,3184,183184,Kurnool,,
+Kuruva Dinesh,46660,Kurnool - Baba Brindavan Nagar,3187,183187,Kurnool,,
+Vijay Golla Bhaskar,46803,"Kurnool - 
+ Kisan Nagar",3188,183188,Kurnool,,
+U Sekhar,45885,Kappatralla,3190,183190,Kurnool,,
+Vijay Golla Bhaskar,46803,Kurnool - Old Bus Stand,3193,183193,Kurnool,,
+Vijay Golla Bhaskar,46803,Kurnool - Balaji Nagar,3194,183194,Kurnool,,
+Kuruva Linganna,46431,Gulyam,3200,183200,Kurnool,,
+K Bala Bhargavi,46703,Nagaladinne,3203,183203,Kurnool,,
+U Sekhar,45885,Govardhanagiri,3206,183206,Kurnool,,
+Ganesh Angadi,46468,Adoni - Aluru Bus Stand,3208,183208,Kurnool,,
+U Sekhar,45885,C.Belagal,3210,183210,Kurnool,,
+Kuruva Dinesh,46660,Chinna Tekur,3211,183211,Kurnool,,
+Maram Anasuya,46485,Nandivargam,3010,183010,Nandyal,,
+Areli Siva Gopal,46563,Parumanchala,3017,183017,Nandyal,,
+Maram Anasuya,46485,Betamcherla,3025,183025,Nandyal,,
+Madhu Sudhan Talari,46420,Uyyalawada,3026,183026,Nandyal,,
+Chintakuntla Mahendra,46424,Deebaguntla,3027,183027,Nandyal,,
+Madhu Sudhan Talari,46420,Tangutur,3029,183029,Nandyal,,
+Areli Siva Gopal,46563,Gadivemula,3031,183031,Nandyal,,
+Madhu Sudhan Talari,46420,Koilakuntla,3049,183049,Nandyal,,
+Madhu Sudhan Talari,46420,Kolimigundla,3050,183050,Nandyal,,
+Telugu Renuka Devi,46852,Garladinne,3051,183051,Nandyal,,
+Chintakuntla Mahendra,46424,Dornipadu,3060,183060,Nandyal,,
+Maram Anasuya,46485,Gospadu,3061,183061,Nandyal,,
+Chintakuntla Mahendra,46424,Gajulapalli,3062,183062,Nandyal,,
+Telugu Renuka Devi,46852,Midthur,3064,183064,Nandyal,,
+Areli Siva Gopal,46563,Atmakur,3065,183065,Nandyal,,
+Areli Siva Gopal,46563,Regadagudur,3071,183071,Nandyal,,
+Madhu Sudhan Talari,46420,Nossam,3089,183089,Nandyal,,
+Telugu Renuka Devi,46852,Dhone,3090,183090,Nandyal,,
+Areli Siva Gopal,46563,Jupadu Bungalow,3096,183096,Nandyal,,
+Madhu Sudhan Talari,46420,Petnikota,3097,183097,Nandyal,,
+Telugu Renuka Devi,46852,Sunnipenta,3099,183099,Nandyal,,
+Areli Siva Gopal,46563,Noonepalli,3106,183106,Nandyal,,
+Areli Siva Gopal,46563,Nandyal Main,3110,183110,Nandyal,,
+Areli Siva Gopal,46563,Thimmapuram,3113,183113,Nandyal,,
+Maram Anasuya,46485,Polur,3114,183114,Nandyal,,
+Telugu Renuka Devi,46852,Hussainapuram-D,3125,183125,Nandyal,,
+Telugu Renuka Devi,46852,Peapully,3146,183146,Nandyal,,
+Madhu Sudhan Talari,46420,Banaganapalle,3147,183147,Nandyal,,
+Vijay Golla Bhaskar,46803,Nandikotkur,3148,183148,Nandyal,,
+Chintakuntla Mahendra,46424,Chagalamarry,3153,183153,Nandyal,,
+Areli Siva Gopal,46563,Mahanandi,3155,183155,Nandyal,,
+Madhu Sudhan Talari,46420,Ankireddypalli,3157,183157,Nandyal,,
+Chintakuntla Mahendra,46424,Allagadda,3158,183158,Nandyal,,
+Chintakuntla Mahendra,46424,Nandyal - Bala Junior College,3160,183160,Nandyal,,
+Areli Siva Gopal,46563,Velugodu,3161,183161,Nandyal,,
+Chintakuntla Mahendra,46424,Nandyal - SPY Reddy Degree College,3163,183163,Nandyal,,
+Maram Anasuya,46485,Nandyal - Srinivasa Nagar,3166,183166,Nandyal,,
+Maram Anasuya,46485,Panyam,3173,183173,Nandyal,,
+Madhu Sudhan Talari,46420,Ramapuram,3174,183174,Nandyal,,
+Telugu Renuka Devi,46852,Jaladurgam,3175,183175,Nandyal,,
+Madhu Sudhan Talari,46420,Akumalla,3180,183180,Nandyal,,
+Chintakuntla Mahendra,46424,Nandyal - Moolasagaram,3181,183181,Nandyal,,
+Chintakuntla Mahendra,46424,Nandyal - NGO Colony,3182,183182,Nandyal,,
+Telugu Renuka Devi,46852,Srisailam,3183,183183,Nandyal,,
+Chintakuntla Mahendra,46424,Allagadda - Market Centre,3185,183185,Nandyal,,
+Madhu Sudhan Talari,46420,Gulladurthi,3189,183189,Nandyal,,
+Telugu Renuka Devi,46852,Dhone - Kondapeta,3191,183191,Nandyal,,
+Madhu Sudhan Talari,46420,Owk,3192,183192,Nandyal,,
+Chintakuntla Mahendra,46424,Yerraguntla,3195,183195,Nandyal,,
+Maram Anasuya,46485,Jillela,3196,183196,Nandyal,,
+Areli Siva Gopal,46563,Pamulapadu,3197,183197,Nandyal,,
+Areli Siva Gopal,46563,Santhajutur,3198,183198,Nandyal,,
+Maram Anasuya,46485,Nandavaram,3199,183199,Nandyal,,
+Telugu Renuka Devi,46852,Kothapalli,3201,183201,Nandyal,,
+Areli Siva Gopal,46563,Nandyal - SBI Colony,3202,183202,Nandyal,,
+Chintakuntla Mahendra,46424,Ellavathula,3204,183204,Nandyal,,
+Telugu Renuka Devi,46852,Dudyala,3205,183205,Nandyal,,
+Areli Siva Gopal,46563,Alluru,3207,183207,Nandyal,,
+Maram Anasuya,46485,Rangapuram,3209,183209,Nandyal,,
+Madhu Sudhan Talari,46420,Perusomula,3212,183212,Nandyal,,
+Valapapuri Ramesh,46690,Arthaveedu,5044,185044,Markapur,,
+Valapapuri Ramesh,46690,Racherla,5045,185045,Markapur,,
+Valapapuri Ramesh,46690,Bestavaripet,5052,185052,Markapur,,
+Valapapuri Ramesh,46690,Giddalur,5059,185059,Markapur,,
+Valapapuri Ramesh,46690,Mundlapadu,5068,185068,Markapur,,
+Valapapuri Ramesh,46690,Cumbum,5069,185069,Markapur,,
+Valapapuri Ramesh,46690,Galizerugulla,5086,185086,Markapur,,
+Non Core Cluster Kadapa TM,-,Thippayapalem,5111,185111,Markapur,,
+Valapapuri Ramesh,46690,Komarolu,5193,185193,Markapur,,
+Valapapuri Ramesh,46690,Giddalur - YSR Centre,5223,185223,Markapur,,
+Valapapuri Ramesh,46690,Krishnamsetty palli,5226,185226,Markapur,,
+Valapapuri Ramesh,46690,Tarlupadu,5233,185233,Markapur,,
+Non Core Cluster Kadapa TM,-,Ayinamukkala,5235,185235,Markapur,,
+Valapapuri Ramesh,46690,Sanjeevarao Peta,5242,185242,Markapur,,
+Unta Mamatha,46092,Nellore Main,4001,184001,Nellore,,
+Non Core Cluster Kadapa TM,-,Vakadu,4002,184002,Nellore,,
+Non Core Cluster Kadapa TM,-,Pellakuru,4003,184003,Nellore,,
+Non Core Cluster Kadapa TM,-,Jagadevipeta,4004,184004,Nellore,,
+Non Core Cluster Kadapa TM,-,Gandipalem,4006,184006,Nellore,,
+Unta Mamatha,46092,Kasumuru,4007,184007,Nellore,,
+Unta Mamatha,46092,Nellore - Vedayapalem,4008,184008,Nellore,,
+Non Core Cluster Kadapa TM,-,Vavilla,4009,184009,Nellore,,
+Non Core Cluster Kadapa TM,-,Bangarupeta,4010,184010,Nellore,,
+Non Core Cluster Kadapa TM,-,Kurugonda,4011,184011,Nellore,,
+Non Core Cluster Kadapa TM,-,Gowravaram,4012,184012,Nellore,,
+Non Core Cluster Kadapa TM,-,Chilakalamarri,4013,184013,Nellore,,
+Non Core Cluster Kadapa TM,-,Marripadu,4014,184014,Nellore,,
+Non Core Cluster Kadapa TM,-,Chakalakonda,4015,184015,Nellore,,
+Non Core Cluster Kadapa TM,-,Siddanakonduru,4016,184016,Nellore,,
+Non Core Cluster Kadapa TM,-,Mallam,4017,184017,Nellore,,
+Non Core Cluster Kadapa TM,-,Brahmanakraka,4018,184018,Nellore,,
+Non Core Cluster Kadapa TM,-,Poolathota,4019,184019,Nellore,,
+Non Core Cluster Kadapa TM,-,Utukuru,4020,184020,Nellore,,
+Non Core Cluster Kadapa TM,-,Talamanchi,4021,184021,Nellore,,
+Non Core Cluster Kadapa TM,-,Eduru,4022,184022,Nellore,,
+Gomasani Venkata Rangaiah,46486,Kondapuram,4023,184023,Markapur,,
+Non Core Cluster Kadapa TM,-,Gunapadu,4025,184025,Nellore,,
+Non Core Cluster Kadapa TM,-,Manganellore,4026,184026,Nellore,,
+Non Core Cluster Kadapa TM,-,Veguru,4027,184027,Nellore,,
+Non Core Cluster Kadapa TM,-,Gudur - Malavyanagar,4028,184028,Nellore,,
+Non Core Cluster Kadapa TM,-,Dakkili,4030,184030,Nellore,,
+Non Core Cluster Kadapa TM,-,Adurupalli,4032,184032,Nellore,,
+Non Core Cluster Kadapa TM,-,Gudur,4033,184033,Nellore,,
+Non Core Cluster Kadapa TM,-,Kulluru,4034,184034,Nellore,,
+Non Core Cluster Kadapa TM,-,Mamuduru,4035,184035,Nellore,,
+Non Core Cluster Kadapa TM,-,Nandipadu,4036,184036,Nellore,,
+Non Core Cluster Kadapa TM,-,Mahammadapuram,4037,184037,Nellore,,
+Non Core Cluster Kadapa TM,-,Gundemadakala,4038,184038,Nellore,,
+Non Core Cluster Kadapa TM,-,Alluru,4039,184039,Nellore,,
+Non Core Cluster Kadapa TM,-,Chintalapalem,4040,184040,Nellore,,
+Non Core Cluster Kadapa TM,-,Pedaputtedu,4042,184042,Nellore,,
+Non Core Cluster Kadapa TM,-,Rudrakota,4043,184043,Nellore,,
+Non Core Cluster Kadapa TM,-,Vasili,4044,184044,Nellore,,
+Non Core Cluster Kadapa TM,-,Niduguntapalem,4045,184045,Nellore,,
+Non Core Cluster Kadapa TM,-,Duvvuru,4047,184047,Nellore,,
+Non Core Cluster Kadapa TM,-,Jonnawada,4048,184048,Nellore,,
+Non Core Cluster Kadapa TM,-,Indukurupeta,4049,184049,Nellore,,
+Non Core Cluster Kadapa TM,-,Kavali,4050,184050,Nellore,,
+Non Core Cluster Kadapa TM,-,Naidupeta,4065,184065,Nellore,,
+Non Core Cluster Kadapa TM,-,Venkatagiri,4066,184066,Nellore,,
+Non Core Cluster Kadapa TM,-,Rapuru,4067,184067,Nellore,,
+Non Core Cluster Kadapa TM,-,Vinjamoor,4071,184071,Nellore,,
+Non Core Cluster Kadapa TM,-,Narrawada,4072,184072,Nellore,,
+Non Core Cluster Kadapa TM,-,Udayagiri,4073,184073,Nellore,,
+Unta Mamatha,46092,Kovuru,4074,184074,Nellore,,
+Non Core Cluster Kadapa TM,-,Baddevolu,4075,184075,Nellore,,
+Non Core Cluster Kadapa TM,-,Tikkavaram,4083,184083,Nellore,,
+Non Core Cluster Kadapa TM,-,Butchireddypalem,4084,184084,Nellore,,
+Non Core Cluster Kadapa TM,-,Sullurupet,4087,184087,Nellore,,
+Non Core Cluster Kadapa TM,-,Atmakur,4093,184093,Nellore,,
+Non Core Cluster Kadapa TM,-,North Raju Palem,4097,184097,Nellore,,
+Non Core Cluster Kadapa TM,-,Podalakur,4098,184098,Nellore,,
+Non Core Cluster Kadapa TM,-,Kaluvoy,4100,184100,Nellore,,
+Unta Mamatha,46092,Nellore - Stonehouse Pet,4101,184101,Nellore,,
+Non Core Cluster Kadapa TM,-,Muthukuru,4103,184103,Nellore,,
+Non Core Cluster Kadapa TM,-,Chejarla,4104,184104,Nellore,,
+Direct Non Core Branches TM CGGB,-,Kaligiri,4111,184111,Nellore,,
+Unta Mamatha,46092,Nellore - AK Nagar,4112,184112,Nellore,,
+Non Core Cluster Kadapa TM,-,Tadakandriga,4113,184113,Nellore,,
+Non Core Cluster Kadapa TM,-,Nellore - SMV Branch,4114,184114,Nellore,,
+Unta Mamatha,46092,Nellore - Mulumudi Bus Stand,4115,184115,Nellore,,
+Non Core Cluster Kadapa TM,-,Kota,4116,184116,Nellore,,
+Non Core Cluster Kadapa TM,-,Jaladanki,4117,184117,Nellore,,
+Direct Non Core Branches TM CGGB,-,Kavali - Janathapet,4118,184118,Nellore,,
+Non Core Cluster Kadapa TM,-,Gudur - DRW College,4119,184119,Nellore,,
+Non Core Cluster Kadapa TM,-,Venkatagiri Cross Roads,4120,184120,Nellore,,
+Non Core Cluster Kadapa TM,-,Padugupadu,4121,184121,Nellore,,
+Non Core Cluster Kadapa TM,-,Chillakuru,4122,184122,Nellore,,
+Gomasani Venkata Rangaiah,46486,Kommi,4123,184123,Markapur,,
+Non Core Cluster Kadapa TM,-,Penchalakona,4124,184124,Nellore,,
+Unta Mamatha,46092,Nellore - Balaji Nagar,4125,184125,Nellore,,
+Non Core Cluster Kadapa TM,-,Nellore - Kisan Nagar,4126,184126,Nellore,,
+Non Core Cluster Kadapa TM,-,Nellore - Dycus Road,4127,184127,Nellore,,
+Direct Non Core Branches TM CGGB,-,Nellore - Mulapet,4128,184128,Nellore,,
+Non Core Cluster Kadapa TM,-,Nellore - Haranathapuram,4129,184129,Nellore,,
+Unta Mamatha,46092,Nellore - Children Park Road,4130,184130,Nellore,,
+Non Core Cluster Kadapa TM,-,Manubolu,4131,184131,Nellore,,
+Non Core Cluster Kadapa TM,-,Revuru,4132,184132,Nellore,,
+Non Core Cluster Kadapa TM,-,Nellore - Ramachandrapuram,4133,184133,Nellore,,
+Non Core Cluster Kadapa TM,-,Sullurupet - SHAR Street,4134,184134,Nellore,,
+Non Core Cluster Kadapa TM,-,Tummalapenta,4135,184135,Nellore,,
+Non Core Cluster Kadapa TM,-,Mahimalur,4136,184136,Nellore,,
+Direct Non Core Branches TM CGGB,-,Nellore - Kothakaluva,4137,184137,Nellore,,
+Non Core Cluster Kadapa TM,-,Apparaopalem,4138,184138,Nellore,,
+Unta Mamatha,46092,Nellore - Padarupalli,4139,184139,Nellore,,
+Gomasani Venkata Rangaiah,46486,Tettu,5054,185054,Markapur,,
+Gomasani Venkata Rangaiah,46486,Ulavapadu,5095,185095,Markapur,,
+Gomasani Venkata Rangaiah,46486,Kandukuru,5186,185186,Markapur,,
+Gomasani Venkata Rangaiah,46486,V.R.Kota,5206,185206,Markapur,,
+Gomasani Venkata Rangaiah,46486,Kandukur-Kanigiri Road,5210,185210,Markapur,,
+Gomasani Venkata Rangaiah,46486,Valetivaripalem,5222,185222,Markapur,,
+Gomasani Venkata Rangaiah,46486,Naladalapur,5237,185237,Markapur,,
+Non Core Cluster Kadapa TM,-,Darakanipadu,5241,185241,Markapur,,
+Non Core Cluster Kadapa TM,-,Markapur,5046,185046,Markapur,,
+Non Core Cluster Kadapa TM,-,Edugundlapadu,5051,185051,Ongole,,
+Non Core Cluster Kadapa TM,-,Mundlamuru,5053,185053,Ongole,,
+Non Core Cluster Kadapa TM,-,Dronadula,5055,185055,Ongole,,
+Non Core Cluster Kadapa TM,-,Madduluru,5056,185056,Ongole,,
+Gomasani Venkata Rangaiah,46486,Pedacherlopalli,5057,185057,Markapur,,
+Non Core Cluster Kadapa TM,-,Yerragondapalem,5058,185058,Markapur,,
+Non Core Cluster Kadapa TM,-,Ballikurava,5060,185060,Ongole,,
+Non Core Cluster Kadapa TM,-,Chodavaram,5061,185061,Ongole,,
+Non Core Cluster Kadapa TM,-,Kunduru,5062,185062,Ongole,,
+Bharath Bonthala,46706,Vemulapadu,5063,185063,Markapur,,
+Non Core Cluster Kadapa TM,-,Karumanchi,5064,185064,Ongole,,
+Non Core Cluster Kadapa TM,-,Pamidipadu,5070,185070,Ongole,,
+Vijaya Kumar Marripudi,46169,Edumudi,5078,185078,Ongole,,
+Non Core Cluster Kadapa TM,-,Boddikurapadu,5080,185080,Ongole,,
+Non Core Cluster Kadapa TM,-,Kopperapadu,5082,185082,Ongole,,
+Non Core Cluster Kadapa TM,-,Cheemakurthi,5085,185085,Ongole,,
+Non Core Cluster Kadapa TM,-,Ammanagudipadu,5088,185088,Markapur,,
+Non Core Cluster Kadapa TM,-,Kondepi,5089,185089,Ongole,,
+Bharath Bonthala,46706,Podili,5090,185090,Markapur,,
+Non Core Cluster Kadapa TM,-,Pullalacheruvu,5091,185091,Markapur,,
+Non Core Cluster Kadapa TM,-,Ongole - Market Centre,5092,185092,Ongole,,
+Non Core Cluster Kadapa TM,-,Medarametla,5094,185094,Ongole,,
+Gomasani Venkata Rangaiah,46486,Pamuru,5096,185096,Markapur,,
+Bharath Bonthala,46706,Gajjalakonda,5098,185098,Markapur,,
+Bharath Bonthala,46706,Kurichedu,5099,185099,Markapur,,
+Non Core Cluster Kadapa TM,-,Singarayakonda,5102,185102,Ongole,,
+Non Core Cluster Kadapa TM,-,Martur,5105,185105,Ongole,,
+Bharath Bonthala,46706,Darsi,5106,185106,Markapur,,
+Vijaya Kumar Marripudi,46169,Karamchedu,5107,185107,Ongole,,
+Vijaya Kumar Marripudi,46169,Pandillapalli,5108,185108,Ongole,,
+Vijaya Kumar Marripudi,46169,Parchuru,5109,185109,Ongole,,
+Non Core Cluster Kadapa TM,-,Ongole - Mungamur Road,5110,185110,Ongole,,
+Bharath Bonthala,46706,Naidupalem,5130,185130,Markapur,,
+Non Core Cluster Kadapa TM,-,Tripurantakam,5132,185132,Markapur,,
+Non Core Cluster Kadapa TM,-,Nuthalapadu,5152,185152,Ongole,,
+Bharath Bonthala,46706,Marripudi,5158,185158,Markapur,,
+Bharath Bonthala,46706,Avulamanda,5159,185159,Markapur,,
+Non Core Cluster Kadapa TM,-,Ongole Main,5168,185168,Ongole,,
+Non Core Cluster Kadapa TM,-,Addanki,5169,185169,Ongole,,
+Vijaya Kumar Marripudi,46169,Chirala,5188,185188,Ongole,,
+Gomasani Venkata Rangaiah,46486,Kanigiri,5191,185191,Markapur,,
+Vijaya Kumar Marripudi,46169,Cherukur,5192,185192,Ongole,,
+Vijaya Kumar Marripudi,46169,Muppavaram,5194,185194,Ongole,,
+Vijaya Kumar Marripudi,46169,Pernamitta,5195,185195,Ongole,,
+Vijaya Kumar Marripudi,46169,Kothapeta,5196,185196,Ongole,,
+Non Core Cluster Kadapa TM,-,Valaparla,5197,185197,Ongole,,
+Non Core Cluster Kadapa TM,-,Kamepalli,5198,185198,Ongole,,
+Vijaya Kumar Marripudi,46169,Inkollu,5199,185199,Ongole,,
+Non Core Cluster Kadapa TM,-,Uppugunduru,5200,185200,Ongole,,
+Vijaya Kumar Marripudi,46169,Chinaganjam,5201,185201,Ongole,,
+Non Core Cluster Kadapa TM,-,Tanguturu,5202,185202,Ongole,,
+Non Core Cluster Kadapa TM,-,Santhanuthalapadu,5203,185203,Ongole,,
+Non Core Cluster Kadapa TM,-,Ongole - Gandhi Bazar,5204,185204,Ongole,,
+Vijaya Kumar Marripudi,46169,Throvagunta,5205,185205,Ongole,,
+Vijaya Kumar Marripudi,46169,Chirala Rural (Perala),5207,185207,Ongole,,
+Vijaya Kumar Marripudi,46169,J. Pangaluru,5208,185208,Ongole,,
+Non Core Cluster Kadapa TM,-,Yaddanapudi,5209,185209,Ongole,,
+Non Core Cluster Kadapa TM,-,Petlur,5211,185211,Ongole,,
+Non Core Cluster Kadapa TM,-,Marlapadu,5212,185212,Ongole,,
+Bharath Bonthala,46706,Rajampalli,5213,185213,Markapur,,
+Non Core Cluster Kadapa TM,-,Kolalapudi,5214,185214,Ongole,,
+Non Core Cluster Kadapa TM,-,Ongole - Kammapalem,5215,185215,Ongole,,
+Non Core Cluster Kadapa TM,-,Alluru,5216,185216,Ongole,,
+Non Core Cluster Kadapa TM,-,Inamanamellore,5217,185217,Ongole,,
+Non Core Cluster Kadapa TM,-,Ulchi,5218,185218,Ongole,,
+Non Core Cluster Kadapa TM,-,Moolaguntapadu,5219,185219,Ongole,,
+Gomasani Venkata Rangaiah,46486,Arivemula,5220,185220,Markapur,,
+Non Core Cluster Kadapa TM,-,Puttavari palem Cross Roads,5221,185221,Ongole,,
+Non Core Cluster Kadapa TM,-,Markapur - Jawahar Nagar Colony,5224,185224,Markapur,,
+Non Core Cluster Kadapa TM,-,Ongole - Sujatha Nagar,5225,185225,Ongole,,
+Non Core Cluster Kadapa TM,-,Toorpu Gangavaram,5227,185227,Ongole,,
+Gomasani Venkata Rangaiah,46486,Choutapalem,5228,185228,Markapur,,
+Non Core Cluster Kadapa TM,-,Kunta,5229,185229,Markapur,,
+Non Core Cluster Kadapa TM,-,B. Cherlopalli,5230,185230,Markapur,,
+Vijaya Kumar Marripudi,46169,Naguluppalapadu,5231,185231,Ongole,,
+Non Core Cluster Kadapa TM,-,Palla Malli,5232,185232,Ongole,,
+Non Core Cluster Kadapa TM,-,Ongole - Housing Board Colony,5234,185234,Ongole,,
+Non Core Cluster Kadapa TM,-,Dupadu,5236,185236,Markapur,,
+Bharath Bonthala,46706,Konakanamitla,5238,185238,Markapur,,
+Bharath Bonthala,46706,Veera Venkata Puram,5239,185239,Markapur,,
+Non Core Cluster Kadapa TM,-,Kotcherla kota,5240,185240,Markapur,,
+Devendra B,46884,Veeraballi,2006,182006,Rajampeta,,
+Mandala Sivasankar,46883,Porumamilla,2007,182007,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Upparapalli,2008,182008,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Obulavaripalle,2018,182018,Rajampeta,,
+Devendra B,46884,Rayavaram,2020,182020,Rajampeta,,
+Mandala Sivasankar,46883,Atlur,2024,182024,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Nandalur,2032,182032,Rajampeta,,
+Mandala Sivasankar,46883,Brahmamgarimattam,2033,182033,Rajampeta,,
+Mandala Sivasankar,46883,Kanagudur,2035,182035,Rajampeta,,
+Mandala Sivasankar,46883,Siddavatam,2053,182053,Rajampeta,,
+Mandala Sivasankar,46883,Kalasapadu,2054,182054,Rajampeta,,
+Devendra B,46884,Galiveedu,2055,182055,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Rajampet,2076,182076,Rajampeta,,
+Mandala Sivasankar,46883,Mydukur,2078,182078,Rajampeta,,
+Devendra B,46884,Sambepalli,2079,182079,Rajampeta,,
+Mandala Sivasankar,46883,Badvel,2083,182083,Rajampeta,,
+Mandala Sivasankar,46883,Itukalapadu,2085,182085,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Nagaripadu,2087,182087,Rajampeta,,
+Devendra B,46884,Chinnamandem,2092,182092,Rajampeta,,
+Non Core Cluster Kadapa TM,-,Pondalur,2094,182094,Rajampeta,,
+Mandala Sivasankar,46883,Narasapuram,2102,182102,Rajampeta,,
+Devendra B,46884,Rayachoty,2107,182107,Rajampeta,,
+Devendra B,46884,Nooliveedu,2108,182108,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Settigunta,2109,182109,Rajampeta,,
+Mandala Sivasankar,46883,B.Kodur,2112,182112,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Kodur (Rly.),2117,182117,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Boyanapally,2118,182118,Rajampeta,,
+Devendra B,46884,Ramapuram,2121,182121,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Vathalur,2122,182122,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Anantharajupet,2135,182135,Rajampeta,,
+Devendra B,46884,Balathimmaiahgaripally,2139,182139,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Pullampet,2150,182150,Rajampeta,,
+Devendra B,46884,Tsundupally,2154,182154,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Chitvel,2155,182155,Rajampeta,,
+Mandala Sivasankar,46883,Duvvuru,2157,182157,Rajampeta,,
+Devendra B,46884,Lakkireddypalli,2160,182160,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Rajampet - R.S. Road,2163,182163,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Mangampeta,2168,182168,Rajampeta,,
+Non Core Cluster Kadapa TM,-,Nagavaram,2171,182171,Rajampeta,,
+Mandala Sivasankar,46883,Gudipadu,2173,182173,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Penagalur,2175,182175,Rajampeta,,
+Mandala Sivasankar,46883,Kamalakur,2178,182178,Rajampeta,,
+Mandala Sivasankar,46883,Guddi Veeraiah Satram,2179,182179,Rajampeta,,
+Mandala Sivasankar,46883,Eguva Ramapuram,2181,182181,Rajampeta,,
+Mandala Sivasankar,46883,Pedda Polupalli Kunta,2182,182182,Rajampeta,,
+Devendra B,46884,Settipalli,2186,182186,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Vontimitta,2190,182190,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Rly.Kodur - RS Road,2192,182192,Rajampeta,,
+Devendra B,46884,Rayachoty - Kothapeta,2195,182195,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Chinna Orampadu,2196,182196,Rajampeta,,
+Venkata Subbareddy Bijivemula,43288,Utukuru,2197,182197,Rajampeta,,
+Vacant-FLS-Machilipatnam 2,-,ALLURU,50011,1950011,GUDIVADA,,
+Nallipogu Arun Kumar,45905,A.RANGAMPET,50012,1950012,TIRUPATHI,,
+Lakkapogu Chaitanya,42161,BALLIPARRU,50013,1950013,GUDIVADA,,
+Vacant-FLS-PALAMANERU,-,BANGARUPALYAM,50014,1950014,CHITTOOR,,
+Jafanya I,43629,B.KOTHAKOTA,50015,1950015,MADANAPALLE,,
+Vacant-FLS-SRIKALAHASTHI,-,B.N.KANDRIGA,50016,1950016,TIRUPATHI,,
+Lakkapogu Chaitanya,42161,BANTUMILLI,50017,1950017,GUDIVADA,,
+Putta Kranthi Kumar,43459,CHEEMALAPADU,50018,1950018,VIJAYAWADA,,
+Vacant-FLS-MADANAPALLE,-,CHEMBAKUR,50019,1950019,MADANAPALLE,,
+Ramidevi Sumanth,43287,CHITTOOR,50020,1950020,CHITTOOR,,
+Jafanya I,43629,CHOWDASAMUDRAM,50021,1950021,MADANAPALLE,,
+Vacant-FLS-MADANAPALLE,-,CHOWDEPALLE,50022,1950022,MADANAPALLE,,
+Venkata Subbaiah Kundarapu,43654,DASUKUPPAM,50023,1950023,TIRUPATHI,,
+Tanniru Gopi,45967,DAVAJIGUDEM,50024,1950024,GUDIVADA,,
+Vacant-FLS-SRIKALAHASTHI,-,EGUVAVEEDHI,50025,1950025,TIRUPATHI,,
+Shanagavarapu Bala Krishna,42164,EDUPUGALLU GOSALA,50026,1950026,GUDIVADA,,
+South AP CGGB- Direct - Circle Manager,-,GAJULAPALLE,50027,1950027,CHITTOOR,,
+Tanniru Gopi,45967,GOVERNORPET,50028,1950028,VIJAYAWADA,,
+Ramidevi Sumanth,43287,GREAMSPET,50029,1950029,CHITTOOR,,
+Shanagavarapu Bala Krishna,42164,GUDIVADA,50030,1950030,GUDIVADA,,
+Vacant-FLS-KUPPAM,-,GUDU PALLE,50031,1950031,CHITTOOR,,
+Vacant-FLS-MADANAPALLE,-,GURRAMKONDA,50032,1950032,MADANAPALLE,,
+Lakkapogu Chaitanya,42161,GUDUR,50033,1950033,GUDIVADA,,
+Prathipati Mahesh Mahesh Babu,42156,JAGGAIAHPET,50034,1950034,VIJAYAWADA,,
+Shanagavarapu Bala Krishna,42164,KAIKALURU,50035,1950035,GUDIVADA,,
+Aneesh Nagisetty,45523,KALAKADA,50036,1950036,MADANAPALLE,,
+Aneesh Nagisetty,45523,KALIKIRI,50037,1950037,MADANAPALLE,,
+Prathipati Mahesh Mahesh Babu,42156,KAMMAVARIPALEM,50038,1950038,VIJAYAWADA,,
+Jafanya I,43629,KANDUKURU,50039,1950039,MADANAPALLE,,
+Aneesh Nagisetty,45523,KANDUR,50040,1950040,MADANAPALLE,,
+Prathipati Mahesh Mahesh Babu,42156,KANNEVEEDU,50041,1950041,VIJAYAWADA,,
+Vacant-FLS-SODAM,-,KANIPAKKAM,50042,1950042,CHITTOOR,,
+Ramidevi Sumanth,43287,KASIRALLA,50043,1950043,CHITTOOR,,
+South AP CGGB- Direct - Circle Manager,-,KATHERAPALLE,50044,1950044,TIRUPATHI,,
+Vacant-FLS-PALAMANERU,-,KOLAMASANA PALLE,50045,1950045,CHITTOOR,,
+Aneesh Nagisetty,45523,K R G PALLE,50046,1950046,MADANAPALLE,,
+Nallipogu Arun Kumar,45905,KORLAGUNTA,50047,1950047,TIRUPATHI,,
+Akula Harika,42160,KOTHAPETA,50048,1950048,VIJAYAWADA,,
+South AP CGGB- Direct - Circle Manager,-,KOTHAPALLEMITTA,50049,1950049,CHITTOOR,,
+Vacant-FLS-KUPPAM,-,KUPPAM,50050,1950050,CHITTOOR,,
+Nallipogu Arun Kumar,45905,KUPPAM BHADUR,50051,1950051,TIRUPATHI,,
+Vacant-FLS-SRIKALAHASTHI,-,K.V.B.PURAM,50052,1950052,TIRUPATHI,,
+Shanagavarapu Bala Krishna,42164,KUCHIPUDI,50053,1950053,GUDIVADA,,
+Tanniru Gopi,45967,KESARAPALLE,50054,1950054,GUDIVADA,,
+Lakkapogu Chaitanya,42161,LAKSHMIPURAM,50055,1950055,GUDIVADA,,
+Shanagavarapu Bala Krishna,42164,LINGALA,50056,1950056,GUDIVADA,,
+Lakkapogu Chaitanya,42161,MACHALIPATNAM,50057,1950057,GUDIVADA,,
+Vacant-FLS-MADANAPALLE,-,MADANA PALLE,50058,1950058,MADANAPALLE,,
+Aneesh Nagisetty,45523,MAHAL,50059,1950059,MADANAPALLE,,
+Shanagavarapu Bala Krishna,42164,MANTHENA,50060,1950060,GUDIVADA,,
+Ramidevi Sumanth,43287,M.BANDAPALLE,50061,1950061,CHITTOOR,,
+Vacant-FLS-PALAMANERU,-,MOGILI,50062,1950062,CHITTOOR,,
+Jafanya I,43629,MUDIVEDU,50063,1950063,MADANAPALLE,,
+Prathipati Mahesh Mahesh Babu,42156,MULAPADU,50064,1950064,VIJAYAWADA,,
+Domathoti Prameela Rani,43697,MUSTI KUNTLA,50065,1950065,VIJAYAWADA,,
+Nallipogu Arun Kumar,45905,M R PALLE,50066,1950066,TIRUPATHI,,
+Shanagavarapu Bala Krishna,42164,MUDINEPALLE,50067,1950067,GUDIVADA,,
+Prathipati Mahesh Mahesh Babu,42156,MAKKAPET,50068,1950068,VIJAYAWADA,,
+Venkata Subbaiah Kundarapu,43654,NAGALAPURAM,50069,1950069,TIRUPATHI,,
+Venkata Subbaiah Kundarapu,43654,NAGARI,50070,1950070,TIRUPATHI,,
+Putta Kranthi Kumar,43459,NAGULURU,50071,1950071,VIJAYAWADA,,
+Prathipati Mahesh Mahesh Babu,42156,NANDIGAMA,50072,1950072,VIJAYAWADA,,
+Aneesh Nagisetty,45523,NANJAMPET,50073,1950073,MADANAPALLE,,
+South AP CGGB- Direct - Circle Manager,-,N R PET,50074,1950074,CHITTOOR,,
+South AP CGGB- Direct - Circle Manager,-,NENDRAGUNTA,50075,1950075,CHITTOOR,,
+Nallipogu Arun Kumar,45905,N.G.O. s COLONY,50076,1950076,TIRUPATHI,,
+Venkata Subbaiah Kundarapu,43654,NINDRA,50077,1950077,TIRUPATHI,,
+Shanagavarapu Bala Krishna,42164,NEPPALLI,50078,1950078,GUDIVADA,,
+Shanagavarapu Bala Krishna,42164,NUNNA,50079,1950079,VIJAYAWADA,,
+Domathoti Prameela Rani,43697,NUZIVEEDU,50080,1950080,GUDIVADA,,
+Vacant-FLS-KUPPAM,-,OGU,50081,1950081,CHITTOOR,,
+South AP CGGB- Direct - Circle Manager,-,PAKALA,50082,1950082,CHITTOOR,,
+Vacant-FLS-PALAMANERU,-,PALAMANER,50083,1950083,CHITTOOR,,
+Venkata Subbaiah Kundarapu,43654,PALAMANGALAM,50084,1950084,TIRUPATHI,,
+Vacant-FLS-SRIKALAHASTHI,-,PALLAM,50085,1950085,TIRUPATHI,,
+South AP CGGB- Direct - Circle Manager,-,PALASAMUDRAM,50086,1950086,CHITTOOR,,
+Vacant-FLS-SRIKALAHASTHI,-,PAPANAIDU PET,50087,1950087,TIRUPATHI,,
+Tanniru Gopi,45967,PATAMATA,50088,1950088,VIJAYAWADA,,
+Vacant-FLS-PALAMANERU,-,PATHIKONDA,50089,1950089,MADANAPALLE,,
+Jafanya I,43629,PEDDAMANDYAM,50090,1950090,MADANAPALLE,,
+Aneesh Nagisetty,45523,PILER,50091,1950091,MADANAPALLE,,
+Domathoti Prameela Rani,43697,POLISETTYPADU,50092,1950092,VIJAYAWADA,,
+Vacant-FLS-MADANAPALLE,-,PUNGANUR,50093,1950093,MADANAPALLE,,
+Vacant-FLS-Machilipatnam 2,-,PUTLACHERUVU,50094,1950094,GUDIVADA,,
+Venkata Subbaiah Kundarapu,43654,PUTTUR,50095,1950095,TIRUPATHI,,
+Prathipati Mahesh Mahesh Babu,42156,POLAMPALLE,50096,1950096,VIJAYAWADA,,
+Lakkapogu Chaitanya,42161,PAMARRU,50097,1950097,GUDIVADA,,
+Akula Harika,42160,PRASADAMPADU,50098,1950098,VIJAYAWADA,,
+Nallipogu Arun Kumar,45905,PRAKASAM ROAD,50099,1950099,TIRUPATHI,,
+Nallipogu Arun Kumar,45905,R C PURAM,50100,1950100,TIRUPATHI,,
+Ramidevi Sumanth,43287,RAMAPURAM,50101,1950101,CHITTOOR,,
+Putta Kranthi Kumar,43459,REPUDI,50102,1950102,VIJAYAWADA,,
+Domathoti Prameela Rani,43697,RAMANAKKAPET,50103,1950103,GUDIVADA,,
+Nallipogu Arun Kumar,45905,R V NAGAR,50104,1950104,TIRUPATHI,,
+Vacant-FLS-SRIKALAHASTHI,-,RENIGUNTA,50105,1950105,TIRUPATHI,,
+Akula Harika,42160,RAMAVARAPPADU,50106,1950106,VIJAYAWADA,,
+Vacant-FLS-PALAMANERU,-,SANKARAYALA PET,50107,1950107,MADANAPALLE,,
+South AP CGGB- Direct - Circle Manager,-,SANTHAVELLORE,50108,1950108,TIRUPATHI,,
+Vacant-FLS-KUPPAM,-,SANTHIPURAM,50109,1950109,CHITTOOR,,
+South AP CGGB- Direct - Circle Manager,-,SATHYAVEDU,50110,1950110,TIRUPATHI,,
+Aneesh Nagisetty,45523,SODAM,50111,1950111,MADANAPALLE,,
+Vacant-FLS-SRIKALAHASTHI,-,SRIKALAHASTHI,50112,1950112,TIRUPATHI,,
+South AP CGGB- Direct - Circle Manager,-,S R PURAM,50113,1950113,CHITTOOR,,
+Aneesh Nagisetty,45523,TALAPULA,50114,1950114,MADANAPALLE,,
+Vacant-FLS-MADANAPALLE,-,TARIGONDA,50115,1950115,MADANAPALLE,,
+Vacant-FLS-KUPPAM,-,THEERTHAM,50116,1950116,CHITTOOR,,
+South AP CGGB- Direct - Circle Manager,-,THUGUNDRAM,50117,1950117,CHITTOOR,,
+Nallipogu Arun Kumar,45905,THIRUPATHI,50118,1950118,TIRUPATHI,,
+Akula Harika,42160,TADIGADAPA,50119,1950119,GUDIVADA,,
+Putta Kranthi Kumar,43459,TIRUVUR,50120,1950120,VIJAYAWADA,,
+South AP CGGB- Direct - Circle Manager,-,UGRANAM PALLE,50121,1950121,CHITTOOR,,
+Vacant-FLS-MADANAPALLE,-,VALMIKIPURAM,50122,1950122,MADANAPALLE,,
+Putta Kranthi Kumar,43459,VAVILALA,50123,1950123,VIJAYAWADA,,
+Tanniru Gopi,45967,VEERAPANENI GUDEM,50124,1950124,GUDIVADA,,
+Tanniru Gopi,45967,VEERAVALLI,50125,1950125,GUDIVADA,,
+Prathipati Mahesh Mahesh Babu,42156,VELLANKI,50126,1950126,VIJAYAWADA,,
+Putta Kranthi Kumar,43459,VELLATURU,50127,1950127,VIJAYAWADA,,
+Venkata Subbaiah Kundarapu,43654,VENGALATHUR,50128,1950128,TIRUPATHI,,
+Vacant-FLS-KUPPAM,-,VIJALAPURAM,50129,1950129,CHITTOOR,,
+Venkata Subbaiah Kundarapu,43654,VIJAYAPURAM,50130,1950130,TIRUPATHI,,
+Putta Kranthi Kumar,43459,VINAGADAPA,50131,1950131,VIJAYAWADA,,
+Vacant-FLS-KUPPAM,-,V.KOTA,50132,1950132,CHITTOOR,,
+Shanagavarapu Bala Krishna,42164,VUYYUR,50133,1950133,GUDIVADA,,
+Putta Kranthi Kumar,43459,VELVADAM,50134,1950134,VIJAYAWADA,,
+Vacant-FLS-SODAM,-,Y.S.GATE,50135,1950135,CHITTOOR,,
+Vacant-FLS-SODAM,-,YERRAVARI PALEM,50136,1950136,TIRUPATHI,,
+Akula Harika,42160,YANAMALAKUDURU,50137,1950137,GUDIVADA,,
+South AP CGGB- Direct - Circle Manager,-,ARAGONDA,50138,1950138,CHITTOOR,,
+Shanagavarapu Bala Krishna,42164,KALIDINDI,50139,1950139,GUDIVADA,,
+Aneesh Nagisetty,45523,ROMPICHERLA,50140,1950140,MADANAPALLE,,
+Nallipogu Arun Kumar,45905,VADAMALPET,50141,1950141,TIRUPATHI,,
+Tanniru Gopi,45967,KANKIPADU,50142,1950142,GUDIVADA,,
+Vacant-FLS-KUPPAM,-,RAMA KUPPAM,50143,1950143,CHITTOOR,,
+Vacant-FLS-MADANAPALLE,-,RAMASAMUDRAM,50144,1950144,MADANAPALLE,,
+Vacant-FLS-SODAM,-,BHAKARAPET,50145,1950145,TIRUPATHI,,
+South AP CGGB- Direct - Circle Manager,-,THAVANAMPALLE,50146,1950146,CHITTOOR,,
+Vacant-FLS-SODAM,-,IRALA,50147,1950147,CHITTOOR,,
+Vacant-FLS-PALAMANERU,-,BAIREDDIPALLE,50148,1950148,CHITTOOR,,
+Vacant-FLS-Machilipatnam 2,-,THOTLAVALLURU,50149,1950149,GUDIVADA,,
+Vacant-FLS-SODAM,-,DAMALCHERUVU,50150,1950150,CHITTOOR,,
+Vacant-FLS-SRIKALAHASTHI,-,PITCHATUR,50151,1950151,TIRUPATHI,,
+Venkata Subbaiah Kundarapu,43654,VARADAIAHPALEM,50152,1950152,TIRUPATHI,,
+Jafanya I,43629,GOLLAPALLE,50153,1950153,MADANAPALLE,,
+Akula Harika,42160,GOLLAPUDI,50154,1950154,VIJAYAWADA,,
+Ramidevi Sumanth,43287,PUTHALAPATTU,50155,1950155,CHITTOOR,,
+Aneesh Nagisetty,45523,G KOTHAPALLE,50156,1950156,MADANAPALLE,,
+Vacant-FLS-SRIKALAHASTHI,-,YERPEDU,50157,1950157,TIRUPATHI,,
+Venkata Subbaiah Kundarapu,43654,NARAYANAVANAM,50158,1950158,TIRUPATHI,,
+Aneesh Nagisetty,45523,GARNIMITTA,50159,1950159,MADANAPALLE,,
+South AP CGGB- Direct - Circle Manager,-,MANGALAMPETA,50160,1950160,MADANAPALLE,,
+Domathoti Prameela Rani,43697,KHAMBAMPADU,50161,1950161,VIJAYAWADA,,
+Vacant-FLS-SODAM,-,NERABYLU,50162,1950162,TIRUPATHI,,
+Ramidevi Sumanth,43287,MURAKAMBATTU,50163,1950163,CHITTOOR,,
+Ramidevi Sumanth,43287,GUDIPALA,50164,1950164,CHITTOOR,,
+Jafanya I,43629,KADIRI ROAD MPL,50165,1950165,MADANAPALLE,,
+South AP CGGB- Direct - Circle Manager,-,CHINNA PANDURU,50166,1950166,TIRUPATHI,,
+Tanniru Gopi,45967,KONDAPALLI,50167,1950167,VIJAYAWADA,,
+Shanagavarapu Bala Krishna,42164,A SEETHARAMAPURAM,50168,1950168,GUDIVADA,,
+Vacant-FLS-MADANAPALLE,-,ANGALLU,50169,1950169,MADANAPALLE,,
+South AP CGGB- Direct - Circle Manager,-,YADAMARI,50170,1950170,CHITTOOR,,
+Vacant-FLS-SRIKALAHASTHI,-,THOTTAMBEDU,50171,1950171,TIRUPATHI,,
+Lakkapogu Chaitanya,42161,AVANIGADDA,50172,1950172,GUDIVADA,,
+Lakkapogu Chaitanya,42161,CHALLAPALLI,50173,1950173,GUDIVADA,,
+Vacant-FLS-KUPPAM,-,CHELDIGANIPALLE,50174,1950174,CHITTOOR,,
+Vacant-FLS-KUPPAM,-,PONNANGUR,50175,1950175,CHITTOOR,,
+Domathoti Prameela Rani,43697,Agiripalli,50176,1950176,GUDIVADA,,
+Tanniru Gopi,45967,KAVULURU,50177,1950177,VIJAYAWADA,,
+Lakkapogu Chaitanya,42161,MACHILIPATNAM II(chemmannagiripeta),50178,1950178,GUDIVADA,,
+Nallipogu Arun Kumar,45905,TIRUCHANOOR,50179,1950179,TIRUPATHI,,
+Vacant-FLS-PALAMANERU,-,"OLD PET,PALAMANER",50180,1950180,CHITTOOR,,
+Vacant-FLS-MADANAPALLE,-,GOKUL CIRCLE BRANCH,50181,1950181,MADANAPALLE,,
+Tanniru Gopi,45967,KANCHIKACHERLA,50182,1950182,VIJAYAWADA,,
+Putta Kranthi Kumar,43459,G KONDUR,50183,1950183,VIJAYAWADA,,
+Putta Kranthi Kumar,43459,MYLAVARAM,50184,1950184,VIJAYAWADA,,
+Nallipogu Arun Kumar,45905,CHANDRAGIRI,50185,1950185,TIRUPATHI,,
+Jafanya I,43629,ESWARAMMA COLONY,50186,1950186,MADANAPALLE,,
+Ramidevi Sumanth,43287,SANTHAPETA,50187,1950187,CHITTOOR,,
+Nallipogu Arun Kumar,45905,L S NAGAR,50188,1950188,TIRUPATHI,,
+South AP CGGB- Direct - Circle Manager,-,MANGALAM,50189,1950189,TIRUPATHI,,
+Vacant-FLS-PALAMANERU,-,K G SATHRAM,50190,1950190,CHITTOOR,,
+Domathoti Prameela Rani,43697,VISSANNAPETA,50191,1950191,VIJAYAWADA,,
+Ramidevi Sumanth,43287,KONGAREDDIPALLY,50192,1950192,CHITTOOR,,
+Jafanya I,43629,VELIGALLU,50193,1950193,MADANAPALLE,,
+Vacant-FLS-KUPPAM,-,RALLABUDUGUR,50194,1950194,CHITTOOR,,
+Domathoti Prameela Rani,43697,CHATRAI,50195,1950195,GUDIVADA,,
+Prathipati Mahesh Mahesh Babu,42156,PENUGANCHIPROLU,50196,1950196,VIJAYAWADA,,
+Akula Harika,42160,SATYANARAYANAPURAM,50197,1950197,VIJAYAWADA,,
+Shanagavarapu Bala Krishna,42164,VEERANKILAKULU,50198,1950198,GUDIVADA,,
+Putta Kranthi Kumar,43459,GAMPALAGUDEM,50199,1950199,VIJAYAWADA,,
+Vacant-FLS-MADANAPALLE,-,NIMMANAPALLE,50200,1950200,MADANAPALLE,,
+Akula Harika,42160,AJITH SINGH NAGAR,50201,1950201,VIJAYAWADA,,
+Lakkapogu Chaitanya,42161,PEDANA,50202,1950202,GUDIVADA,,
+Prathipati Mahesh Mahesh Babu,42156,SHER MOHAMMADPET,50203,1950203,VIJAYAWADA,,
+Aneesh Nagisetty,45523,KALLUR,50204,1950204,MADANAPALLE,,
+Ramidevi Sumanth,43287,GANGADHARA NELLORE,50205,1950205,CHITTOOR,,
+Akula Harika,42160,VIDYADHARAPURAM,50206,1950206,VIJAYAWADA,,
+Jafanya I,43629,MULAKALACHERUVU,50207,1950207,MADANAPALLE,,
+Lakkapogu Chaitanya,42161,GUDLAVALLERU,50208,1950208,GUDIVADA,,
+Aneesh Nagisetty,45523,DODDIPALLI,50209,1950209,MADANAPALLE,,
+Nallipogu Arun Kumar,45905,Dhanalakshmi nagar,50210,1950210,TIRUPATHI,,
+Tanniru Gopi,45967,IBRAHIMPATNAM,50211,1950211,VIJAYAWADA,,
+Venkata Subbaiah Kundarapu,43654,"CHENNAI ROAD, PUTTUR",50212,1950212,TIRUPATHI,,
+South AP CGGB- Direct - Circle Manager,-,PENUMUR,50213,1950213,CHITTOOR,,
+Vacant-FLS-SODAM,-,POLAKALA SANTHA GATE,50214,1950214,CHITTOOR,,
+Prathipati Mahesh Mahesh Babu,42156,CHANDARLAPADU,50215,1950215,VIJAYAWADA,,
+Shanagavarapu Bala Krishna,42164,MANDAVALLI,50216,1950216,GUDIVADA,,
+Domathoti Prameela Rani,43697,MUSUNURU,50217,1950217,GUDIVADA,,
+Aneesh Nagisetty,45523,PEDDA UPPARA PALLE,50218,1950218,MADANAPALLE,,
+Tanniru Gopi,45967,PENAMALURU,50219,1950219,GUDIVADA,,
+Akula Harika,42160,JAKKAMPUDI,50220,1950220,VIJAYAWADA,,
+Lakkapogu Chaitanya,42161,MOPIDEVI,50221,1950221,GUDIVADA,,
+Lakkapogu Chaitanya,42161,GHANTASALA,50222,1950222,GUDIVADA,,
+Aneesh Nagisetty,45523,CHINNAGOTTIGALLU,50223,1950223,MADANAPALLE,,
+Vacant-FLS-MADANAPALLE,-,CHINNA TIPPA SAMUDRAM (CTM),50224,1950224,MADANAPALLE,,
+Tanniru Gopi,45967,NIDAMANURU,50225,1950225,VIJAYAWADA,,
+Vacant-FLS-SRIKALAHASTHI,-,PANAGAL,50226,1950226,TIRUPATHI,,
+Vacant-FLS-Chandragiri,-,SETTIPALLI-THIRUPATHI,50227,1950227,TIRUPATHI,,
+Domathoti Prameela Rani,43697,PUTRELA,50228,1950228,VIJAYAWADA,,
+Venkata Subbaiah Kundarapu,43654,KARVETINAGAR,50229,1950229,TIRUPATHI,,
+Shanagavarapu Bala Krishna,42164,MAANIKONDA,50230,1950230,GUDIVADA,,
+Prathipati Mahesh Mahesh Babu,42156,NAWABPET,50231,1950231,VIJAYAWADA,,
+Vacant-FLS-MADANAPALLE,-,KONDAMARIPALLE,50232,1950232,MADANAPALLE,,
+Prathipati Mahesh Mahesh Babu,42156,MAGALLU,50233,1950233,VIJAYAWADA,,
+Vacant-FLS-PALAMANERU,-,Gangavaram,50234,1950234,CHITTOOR,,
+Vacant-FLS-MADANAPALLE,-,Chintaparthi,50235,1950235,MADANAPALLE,,
+South AP CGGB- Direct - Circle Manager,-,TIRUMALA,50236,1950236,TIRUPATHI,,
+Vacant-FLS-Machilipatnam 2,-,TUMMALAPALLI,50237,1950237,GUDIVADA,,
+Jafanya I,43629,PEDDA THIPPA SAMUDRAM,50238,1950238,MADANAPALLE,,
+Putta Kranthi Kumar,43459,PENUGOLANU,50239,1950239,VIJAYAWADA,,
+Prathipati Mahesh Mahesh Babu,42156,KONAYAPALEM,50240,1950240,VIJAYAWADA,,
+Jafanya I,43629,THAMBALLAPALLE,50241,1950241,MADANAPALLE,,
+Tanniru Gopi,45967,UPPULURU,50242,1950242,GUDIVADA,,
+Vacant-FLS-Machilipatnam 2,-,NAGAYALANKA,50243,1950243,GUDIVADA,,
+Putta Kranthi Kumar,43459,UTUKURU,50244,1950244,VIJAYAWADA,,
+Akula Harika,42160,AYYAPPANAGAR,50245,1950245,VIJAYAWADA,,
+Akula Harika,42160,GUNTUPALLI,50246,1950246,VIJAYAWADA,,
+Vacant-FLS-Chandragiri,-,PUDIPATLA,50247,1950247,TIRUPATHI,,
+South AP CGGB- Direct - Circle Manager,-,KODURU,50248,1950248,GUDIVADA,,
+Vacant-FLS-KUPPAM,-,KANGUNDI,50249,1950249,CHITTOOR,,
+South AP CGGB- Direct - Circle Manager,-,SEETHANAPALLI,50250,1950250,GUDIVADA,,
+Vacant-FLS-PALAMANERU,-,RAYALAPETA,50251,1950251,MADANAPALLE,,
+Vacant-FLS-PALAMANERU,-,BATTAMDODDI,50252,1950252,MADANAPALLE,,
+Vacant-FLS-Chandragiri,-,PACHIKAPALLAM,50253,1950253,TIRUPATHI,,
+Prathipati Mahesh Mahesh Babu,42156,KAKARAVAI KAMBHAMPADU,50254,1950254,VIJAYAWADA,,
+Domathoti Prameela Rani,43697,RANGAPURAM,50255,1950255,VIJAYAWADA,,
+#N/A,#N/A,VELLORE ROAD,50256,-,CHITTOOR,,
+Direct Non Core Branches TM CGGB,-,Chintoor,4111,184111,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kukunoor,4141,184141,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kunavaram,4140,184140,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Nellipaka,4156,184156,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Seethapuram,4118,184118,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Upperu,4166,184166,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Velerupadu,4137,184137,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,VR Puram,4128,184128,Anakapalli,,
+Rowthu Sumathi,45963,Arikathota,2269,182269,Vizianagaram,,
+Rowthu Sumathi,45963,Badangi,2201,182201,Vizianagaram,,
+Santhosh Kumar Sontena,46276,Balijipeta,2268,182268,Parvathipuram,,
+Burada Sai Rani,45948,Bathili,1131,181131,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Bhadragiri,2204,182204,Parvathipuram,,
+Burada Sai Rani,45948,Bhamini,1176,181176,Parvathipuram,,
+Rowthu Sumathi,45963,Bobbili,2222,182222,Vizianagaram,,
+Burada Sai Rani,45948,Burja,1113,181113,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Chinabhogila,2274,182274,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Chinamerangi,2216,182216,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Chinthada,2212,182212,Parvathipuram,,
+Rowthu Sumathi,45963,Fort Bobbili,2273,182273,Vizianagaram,,
+Raviteja Madapala,45915,Galavalli,2258,182258,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Garugubelli,2215,182215,Parvathipuram,,
+Raviteja Madapala,45915,Gulla Seetha Rampuram,1178,181178,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Gutchimi,2256,182256,Parvathipuram,,
+Burada Sai Rani,45948,Guttavalli,1149,181149,Parvathipuram,,
+Raviteja Madapala,45915,Honjaram,1190,181190,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Jiyyammavalasa,2247,182247,Parvathipuram,,
+Burada Sai Rani,45948,Kollivalasa(Burja Mandal),1174,181174,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Komarada,2227,182227,Parvathipuram,,
+Burada Sai Rani,45948,Korada,1145,181145,Parvathipuram,,
+Raviteja Madapala,45915,Korasavada,1138,181138,Parvathipuram,,
+Burada Sai Rani,45948,Kotturu,1105,181105,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Kurigam,1155,181155,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Kurupam,2257,182257,Parvathipuram,,
+Burada Sai Rani,45948,L.N.Peta,1117,181117,Parvathipuram,,
+Rowthu Sumathi,45963,M.Mamidipalli,2232,182232,Vizianagaram,,
+Burada Sai Rani,45948,M.Singapuram,1187,181187,Parvathipuram,,
+Rowthu Sumathi,45963,Main Road Salur,2276,182276,Vizianagaram,,
+Rowthu Sumathi,45963,Makkuva,2205,182205,Vizianagaram,,
+Raviteja Madapala,45915,Nivagam,1183,181183,Parvathipuram,,
+Rowthu Sumathi,45963,Pachipenta,2214,182214,Vizianagaram,,
+Santhosh Kumar Sontena,46276,PAKKI,2287,182287,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Palakonda,1146,181146,Parvathipuram,,
+Burada Sai Rani,45948,Palakonda Road,2270,182270,Parvathipuram,,
+Rowthu Sumathi,45963,Panchali,2272,182272,Vizianagaram,,
+Santhosh Kumar Sontena,46276,Parvatipuram,2220,182220,Parvathipuram,,
+Burada Sai Rani,45948,Pathapatnam,1169,181169,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Pedabondapalli,2249,182249,Parvathipuram,,
+Direct Non Core Branches TM CGGB,-,Pedamanapuram,2210,182210,Vizianagaram,,
+Santhosh Kumar Sontena,46276,Pinapenki,2237,182237,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Piridi,2234,182234,Parvathipuram,,
+Raviteja Madapala,45915,Pogiri,1171,181171,Parvathipuram,,
+Direct Non Core Branches TM CGGB,-,Poram,2260,182260,Vizianagaram,,
+Raviteja Madapala,45915,R.Amadalavalasa,1181,181181,Parvathipuram,,
+Rowthu Sumathi,45963,R.B.Puram,2209,182209,Vizianagaram,,
+Raviteja Madapala,45915,Rajam,1112,181112,Parvathipuram,,
+Rowthu Sumathi,45963,Salur,2259,182259,Vizianagaram,,
+Rowthu Sumathi,45963,Sambara,2282,182282,Vizianagaram,,
+Burada Sai Rani,45948,Sarubujjili,1128,181128,Parvathipuram,,
+Raviteja Madapala,45915,Seedhi-1,1180,181180,Parvathipuram,,
+Burada Sai Rani,45948,Seethampeta,1106,181106,Parvathipuram,,
+Raviteja Madapala,45915,Temburu,1191,181191,Parvathipuram,,
+Raviteja Madapala,45915,Terlam,2271,182271,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Thotapalli,2226,182226,Parvathipuram,,
+Raviteja Madapala,45915,Uttaravalli,2255,182255,Parvathipuram,,
+Santhosh Kumar Sontena,46276,Veeraghattam,1114,181114,Parvathipuram,,
+Burada Sai Rani,45948,Akkulapeta,1158,181158,Parvathipuram,,
+Dharmana Rajesh,46740,Alikam,1188,181188,Srikakulam,,
+Raviteja Madapala,45915,Arasada,1196,181196,Parvathipuram,,
+Bhyri Prabhavati,46946,Arasavilli,1160,181160,Srikakulam,,
+Lakshmanarao Battini,46687,Balaga,1161,181161,Srikakulam,,
+Bhyri Prabhavati,46946,Baruva,1108,181108,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Borivanka,1110,181110,Srikakulam,,
+Enukoti Sriharsha,46807,BORUBHADRA,1163,181163,Srikakulam,,
+Raviteja Madapala,45915,Budithi,1127,181127,Parvathipuram,,
+Dharmana Rajesh,46740,Calingapatnam,1103,181103,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Chilukapalem,1168,181168,Srikakulam,,
+Lakshmanarao Battini,46687,Dharmavaram,1152,181152,Srikakulam,,
+Lakshmanarao Battini,46687,GUJARATHIPETA,1143,181143,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Haripuram,1136,181136,Srikakulam,,
+Bhyri Prabhavati,46946,HB Colony,1159,181159,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Ichapuram,1157,181157,Srikakulam,,
+Raviteja Madapala,45915,JALAMURU,1164,181164,Parvathipuram,,
+Enukoti Sriharsha,46807,Jarjangi,1104,181104,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,KALIVARAM,1126,181126,Srikakulam,,
+Bhyri Prabhavati,46946,Kallepalli,1195,181195,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Kanchili,1130,181130,Srikakulam,,
+Dharmana Rajesh,46740,Karajada,1151,181151,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Kasibugga,1115,181115,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Kaviti,1185,181185,Srikakulam,,
+Bhyri Prabhavati,46946,Korlam,1189,181189,Srikakulam,,
+Enukoti Sriharsha,46807,Kothapalli,1172,181172,Srikakulam,,
+Lakshmanarao Battini,46687,Krishnapuram,1137,181137,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Laveru,1147,181147,Srikakulam,,
+Bhyri Prabhavati,46946,Mabbagam,1165,181165,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Mamidipally,1193,181193,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Mandasa,1111,181111,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Mattamsariapalli,1148,181148,Srikakulam,,
+Raviteja Madapala,45915,Meliaputti,1107,181107,Parvathipuram,,
+Bhyri Prabhavati,46946,MUDDADA,1197,181197,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,MURAPAKA(Kuppili),1132,181132,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Nandigam,1121,181121,Srikakulam,,
+Enukoti Sriharsha,46807,Narasannapeta,1139,181139,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Naupada,1194,181194,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,New Colony SKL,1167,181167,Srikakulam,,
+Enukoti Sriharsha,46807,Nimmada,1173,181173,Srikakulam,,
+Bhyri Prabhavati,46946,Old Bus Stand,1192,181192,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Palasa,1175,181175,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Pallisaradhi,1184,181184,Srikakulam,,
+Dharmana Rajesh,46740,Peddapadu,1182,181182,Srikakulam,,
+Enukoti Sriharsha,46807,Pinnintipeta,1156,181156,Srikakulam,,
+Enukoti Sriharsha,46807,Polaki,1109,181109,Srikakulam,,
+Lakshmanarao Battini,46687,Ponnada,1177,181177,Srikakulam,,
+Enukoti Sriharsha,46807,Priyaagraharam,1129,181129,Srikakulam,,
+Dharmana Rajesh,46740,Pundi,1120,181120,Srikakulam,,
+Burada Sai Rani,45948,Purushottapuram,1133,181133,Parvathipuram,,
+Direct Non Core Branches TM CGGB,-,Pydibheemavaram,1153,181153,Srikakulam,,
+Lakshmanarao Battini,46687,Ragolu,1150,181150,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Ranasthalam,1140,181140,Srikakulam,,
+Enukoti Sriharsha,46807,Santabommali,1124,181124,Srikakulam,,
+Raviteja Madapala,45915,Santhakaviti,1116,181116,Parvathipuram,,
+Raviteja Madapala,45915,Saravakota,1102,181102,Parvathipuram,,
+Burada Sai Rani,45948,SM Puram,1179,181179,Parvathipuram,,
+Direct Non Core Branches TM CGGB,-,Sompeta,1162,181162,Srikakulam,,
+Lakshmanarao Battini,46687,Srikakulam,1101,181101,Srikakulam,,
+Lakshmanarao Battini,46687,Srikurmam,1170,181170,Srikakulam,,
+Raviteja Madapala,45915,Srimukhalingam,1118,181118,Parvathipuram,,
+Direct Non Core Branches TM CGGB,-,Tadivalasa,1166,181166,Srikakulam,,
+Lakshmanarao Battini,46687,Tekkali,1142,181142,Srikakulam,,
+Direct Non Core Branches TM CGGB,-,Tekkalipatnam,1186,181186,Srikakulam,,
+Dharmana Rajesh,46740,Tholapi,1119,181119,Srikakulam,,
+Raviteja Madapala,45915,Tilaru,1123,181123,Parvathipuram,,
+Raviteja Madapala,45915,Unukuru,1125,181125,Parvathipuram,,
+Enukoti Sriharsha,46807,Urlam,1122,181122,Srikakulam,,
+Dharmana Rajesh,46740,Vajrapukotturu,1144,181144,Srikakulam,,
+Raviteja Madapala,45915,Vandrangi,1141,181141,Parvathipuram,,
+Direct Non Core Branches TM CGGB,-,Adivivaram,3363,183363,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Akkayyapalem,3382,183382,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Allipuram,3351,183351,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Anakapalle,3343,183343,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Arakuvaley,3304,183304,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Arilova,3360,183360,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Atchutapuram,3371,183371,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Baji Jun,3354,183354,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Bhogapuram,3326,183326,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,CHINAGANTYADA,3328,183328,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Chinamushidivada,3335,183335,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Chinna Waltair,3388,183388,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Chinthapalli,3339,183339,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Chittivalasa,3306,183306,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Dabagardens,3327,183327,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,G.Madugula,3319,183319,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,GADICHERLA,3309,183309,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Gunupudi,3346,183346,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,H.B.Colony VSP,3389,183389,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Haripalem,3320,183320,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,K.Agraharam,3324,183324,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,K.D.Peta,3332,183332,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kailasapuram,3395,183395,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Kancharapalem,3301,183301,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Kasimkota,3364,183364,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kommadi,3396,183396,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Kotavurutla,3358,183358,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kothakota,3369,183369,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kothur Junction,3373,183373,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Koyyuru,3315,183315,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Kurmannapalem,3340,183340,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Lankelapalem,3331,183331,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,M.Jagannathapuram,3366,183366,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Madhurawada,3322,183322,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Maharanipeta,3401,183401,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Munchini Puttu,3375,183375,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Murali nagar,3362,183362,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,MVP Colony,3383,183383,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Nakkapalle,3378,183378,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Narava,3386,183386,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Narsingibilli,3374,183374,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Narsipatnam,3337,183337,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,NATHAVARAM,3318,183318,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Nathayyapalem,3385,183385,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Nehru Chowk Anakapalli,3380,183380,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,P.M.Palem,3390,183390,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Padarachapalli,3370,183370,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Paderu,3302,183302,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Pamulavaka,3394,183394,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Parawada,3305,183305,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Payakaraopeta,3342,183342,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Pedabayalu,3344,183344,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Pedagantyada,3393,183393,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Pedagummuluru,3314,183314,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Peddaboddepalli,3368,183368,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,R.K.Beach,3403,183403,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Railway New Colony,3402,183402,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Rajugari Beedu Payakaraopet,3381,183381,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Ramnagar,3384,183384,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Rolugunta,3330,183330,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,S.Rayavaram,3365,183365,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Satyavaram,3348,183348,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Seetammadara,3350,183350,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Seethampeta(V),3387,183387,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Sirasapalli,3317,183317,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Sriharipuram,3355,183355,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Sujathanagar,3399,183399,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Tallapalem,3307,183307,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Thummapala,3316,183316,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Vempadu,3367,183367,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Vemulapudi,3323,183323,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Vishalakshi Nagar,3391,183391,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Yellamanchili,3338,183338,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Yendada,3398,183398,Visakhapatnam,,
+Vesalapu Suresh,46726,Alamanda,2203,182203,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Anandapuram,3377,183377,Visakhapatnam,,
+Thota Renuka Devi,45964,Balajinagar VZM,2266,182266,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Bheemunipatnam,3334,183334,Visakhapatnam,,
+Vesalapu Suresh,46726,Bhogapuram,2261,182261,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Boddam,2229,182229,Visakhapatnam,,
+Vesalapu Suresh,46726,Bonangi,2208,182208,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Bondapalli,2233,182233,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Buchaiahpeta,3357,183357,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Budathanapalli,2230,182230,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Cheedikada,3361,183361,Anakapalli,,
+Ramakrishna Akkinapalli,46469,Cheepurupalli,2213,182213,Vizianagaram,,
+Vesalapu Suresh,46726,Chintalavalasa,2252,182252,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Chodavaram,3349,183349,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Chowduwada,3333,183333,Anakapalli,,
+Ramakrishna Akkinapalli,46469,Denkada,2202,182202,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Devarapalli,3347,183347,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Devupalle,2267,182267,Vizianagaram,,
+Thota Renuka Devi,45964,Dharmapuri R,2278,182278,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Dharmavaram,2280,182280,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Gajapathinagaram,2254,182254,Vizianagaram,,
+Vesalapu Suresh,46726,Gantyada,2206,182206,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,Garbham,2224,182224,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,Garividi,2239,182239,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Gavaravaram,3329,183329,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Govada,3372,183372,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Govindapuram,2217,182217,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,GURLA,2211,182211,Vizianagaram,,
+Vesalapu Suresh,46726,Jagannadhapuram Jonnavalasa,2279,182279,Vizianagaram,,
+Vesalapu Suresh,46726,Jami,2219,182219,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Jarajapupeta,2275,182275,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,K.J.Puram,3321,183321,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,K.Kotapadu,3308,183308,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Konada,2235,182235,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,KONDAKARAKAM,2289,182289,Vizianagaram,,
+Thota Renuka Devi,45964,Kotha Agraharam,2283,182283,Vizianagaram,,
+Thota Renuka Devi,45964,Kothapeta,2264,182264,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Kottavalasa,2207,182207,Visakhapatnam,,
+Vesalapu Suresh,46726,Kumaram,2277,182277,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,Kumili,2236,182236,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,LAKKAVARAPUKOTA,2245,182245,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Madugula,3310,183310,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Mentada,2231,182231,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,Merakamudidam,2240,182240,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Mettapalli,2253,182253,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,Nellimarla,2238,182238,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Padmanabham,3359,183359,Visakhapatnam,,
+Vesalapu Suresh,46726,PAULNAGAR,2288,182288,Vizianagaram,,
+Vesalapu Suresh,46726,Pedamajjipalem,2241,182241,Vizianagaram,,
+Vesalapu Suresh,46726,Pedavemali,2281,182281,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Pusapatirega,2265,182265,Vizianagaram,,
+Ramakrishna Akkinapalli,46469,RAMATHEERTHAM,2284,182284,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Ravikamatam,3311,183311,Anakapalli,,
+Direct Non Core Branches TM CGGB,-,Sabbavaram,3336,183336,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Sare Palli,3376,183376,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Sathiwada,2218,182218,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,Sontyam,3312,183312,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Srungavarapukota,2248,182248,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Tallavalasa,3379,183379,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,V.R.R.Peta,3325,183325,Anakapalli,,
+Ramakrishna Akkinapalli,46469,Vedullavalasa,2244,182244,Vizianagaram,,
+Direct Non Core Branches TM CGGB,-,VEMULAVALASA,3341,183341,Visakhapatnam,,
+Direct Non Core Branches TM CGGB,-,Vepada,2225,182225,Visakhapatnam,,
+Thota Renuka Devi,45964,Vizianagaram,2223,182223,Vizianagaram,,
+Thota Renuka Devi,45964,K L PURAM,2285,182285,Vizianagaram,,
+Thota Renuka Devi,45964,V T AGRAHARAM,2286,182286,Vizianagaram,,
+Thota Renuka Devi,45964,Vzm Contonment,2263,182263,Vizianagaram,,
+Thota Renuka Devi,45964,Vzm Dasannapeta,2262,182262,Vizianagaram,,
+...`; // Add full data
+
+  function parseCSV(csv) {
+    const lines = csv.trim().split('\n');
+    const headers = lines[0].split(',').map(h => h.trim());
+    return lines.slice(1).map(line => {
+      const parts = line.split(',').map(p => p.trim());
+      let obj = {};
+      headers.forEach((header, idx) => obj[header] = parts[idx] || '');
+      return obj;
+    });
+  }
+
+  const branchData = parseCSV(csvData);
+
+  const regionSelect = document.getElementById('regionSelect');
+  const salesOfficerSelect = document.getElementById('salesOfficerSelect');
+  const branchCodeSelect = document.getElementById('branchCodeSelect');
+  const branchNameInput = document.getElementById('branchName');
+  const compositeCodeInput = document.getElementById('compositeCode');
+  const regionFieldInput = document.getElementById('regionField');
+  const employeeIdInput = document.getElementById('employeeId');
+  const messageDiv = document.getElementById('message');
+
+  // Populate regions dropdown
+  function populateRegions() {
+    const regions = [...new Set(branchData.map(b => b.Region))].filter(r => r);
+    regionSelect.innerHTML = '<option value="">Select Region</option>';
+    regions.forEach(region => {
+      const opt = document.createElement('option');
+      opt.value = region;
+      opt.textContent = region;
+      regionSelect.appendChild(opt);
+    });
+    // reset dependent dropdowns
+    salesOfficerSelect.innerHTML = '<option value="">Select Sales Officer</option>';
+    branchCodeSelect.innerHTML = '<option value="">Select Branch Code</option>';
+  }
+
+  // Populate officers for region
+  function populateSalesOfficers(regionName) {
+    const officers = [...new Set(branchData
+      .filter(b => b.Region === regionName)
+      .map(b => b["Sales Officer Name"]))].filter(s => s && s !== 'Vacant-FLS-Eluru 1');
+    salesOfficerSelect.innerHTML = '<option value="">Select Sales Officer</option>';
+    officers.forEach(officer => {
+      const opt = document.createElement('option');
+      opt.value = officer;
+      opt.textContent = officer;
+      salesOfficerSelect.appendChild(opt);
+    });
+    branchCodeSelect.innerHTML = '<option value="">Select Branch Code</option>';
+  }
+
+  // Populate branches for officer+region
+  function populateBranches(regionName, officerName) {
+    branchCodeSelect.innerHTML = '<option value="">Select Branch Code</option>';
+    if (!regionName || !officerName) return;
+    const branches = branchData.filter(b => b.Region === regionName && b['Sales Officer Name'] === officerName);
+    branches.forEach(branch => {
+      const opt = document.createElement('option');
+      opt.value = branch['Branch Code'];
+      opt.textContent = branch['Branch Code'] + ' - ' + branch['Branch Name'];
+      opt.dataset.branchName = branch['Branch Name'];
+      opt.dataset.compositeCode = branch['Composite code'];
+      opt.dataset.region = branch['Region'];
+      opt.dataset.employeeId = branch['Employee ID'];
+      branchCodeSelect.appendChild(opt);
+    });
+  }
+
+  regionSelect.addEventListener('change', () => {
+    const region = regionSelect.value;
+    regionFieldInput.value = region || '';
+    employeeIdInput.value = '';
+    salesOfficerSelect.innerHTML = '<option value="">Select Sales Officer</option>';
+    branchCodeSelect.innerHTML = '<option value="">Select Branch Code</option>';
+    branchNameInput.value = '';
+    compositeCodeInput.value = '';
+    if (region) populateSalesOfficers(region);
+  });
+
+  salesOfficerSelect.addEventListener('change', () => {
+    const region = regionSelect.value;
+    const officer = salesOfficerSelect.value;
+    branchCodeSelect.innerHTML = '<option value="">Select Branch Code</option>';
+    branchNameInput.value = '';
+    compositeCodeInput.value = '';
+    employeeIdInput.value = '';
+    if (region && officer) populateBranches(region, officer);
+
+    // Record employeeId from officer selection
+    const matched = branchData.find(b => b.Region === region && b['Sales Officer Name'] === officer);
+    employeeIdInput.value = matched ? matched['Employee ID'] : '';
+  });
+
+  branchCodeSelect.addEventListener('change', () => {
+    const selected = branchCodeSelect.options[branchCodeSelect.selectedIndex];
+    if (!selected || !selected.value) {
+      branchNameInput.value = '';
+      compositeCodeInput.value = '';
+      employeeIdInput.value = '';
+      return;
+    }
+    branchNameInput.value = selected.dataset.branchName || '';
+    compositeCodeInput.value = selected.dataset.compositeCode || '';
+    regionFieldInput.value = selected.dataset.region || '';
+    employeeIdInput.value = selected.dataset.employeeId || '';
+  });
+
+  document.getElementById('entryForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const formData = {
+      timestamp: new Date().toISOString(),
+      region: regionSelect.value,
+      sales_officer_name: salesOfficerSelect.value,
+      employee_id: employeeIdInput.value,
+      branch_code: branchCodeSelect.value,
+      branch_name: branchNameInput.value,
+      composite_code: compositeCodeInput.value,
+      regionField: regionFieldInput.value,
+      policy_entered_date: document.getElementById('policyEnteredDate').value,
+      application_number: document.getElementById('applicationNumber').value.trim(),
+      customer_name: document.getElementById('customerName').value.trim(),
+      mobile_number: document.getElementById('mobileNumber').value.trim(),
+      pan_number: document.getElementById('panNumber').value.trim(),
+      aadhar_number: document.getElementById('aadharNumber').value.trim(),
+      customer_account_number: document.getElementById('customerAccountNumber').value.trim(),
+      type_of_debit: document.getElementById('typeOfDebit').value,
+      insurance_premium_amount: document.getElementById('insurancePremiumAmount').value,
+      transaction_id: document.getElementById('transactionId').value.trim()
+    };
+
+    // Replace SCRIPT_URL with your Google App Script endpoint
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNnWCfM6SBk09YzbseVLHLVpVnTyNSIJRGfwTj0uyeTlxtcV6_2efQBfOnBr7J-Y3ZJg/exec';
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const result = await response.text();
+      messageDiv.textContent = 'Submission successful!';
+      messageDiv.classList.remove('error');
+      e.target.reset();
+      populateRegions();
+      regionFieldInput.value = '';
+      employeeIdInput.value = '';
+      branchNameInput.value = '';
+      compositeCodeInput.value = '';
+    } catch (error) {
+      messageDiv.textContent = 'Error submitting data. Please try again.';
+      messageDiv.classList.add('error');
+    }
+  });
+
+  // Init dropdowns
+  populateRegions();
+</script>
+</body>
+</html>
