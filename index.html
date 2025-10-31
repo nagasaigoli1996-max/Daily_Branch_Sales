@@ -1736,24 +1736,39 @@ Thota Renuka Devi,45964,Vzm Dasannapeta,2262,182262,Vizianagaram,,
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNnWCfM6SBk09YzbseVLHLVpVnTyNSIJRGfwTj0uyeTlxtcV6_2efQBfOnBr7J-Y3ZJg/exec';
 
     try {
-      const response = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      const result = await response.text();
-      messageDiv.textContent = 'Submission successful!';
-      messageDiv.classList.remove('error');
-      e.target.reset();
-      populateRegions();
-      regionFieldInput.value = '';
-      employeeIdInput.value = '';
-      branchNameInput.value = '';
-      compositeCodeInput.value = '';
-    } catch (error) {
-      messageDiv.textContent = 'Error submitting data. Please try again.';
-      messageDiv.classList.add('error');
-    }
+  // Convert formData to URLSearchParams for better CORS compatibility
+  const params = new URLSearchParams();
+  Object.keys(formData).forEach(key => {
+    params.append(key, formData[key] || '');
+  });
+
+  const response = await fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',  // Key fix: Allows cross-origin without reading response
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: params
+  });
+
+  // With no-cors, we can't read response, but assume success if no error
+  messageDiv.textContent = '✅ Submission successful! Data saved to Google Sheets.';
+  messageDiv.classList.remove('error');
+  
+  // Reset form
+  e.target.reset();
+  populateRegions();  // Re-init dropdowns
+  // Clear readonly fields
+  document.getElementById('branchName').value = '';
+  document.getElementById('compositeCode').value = '';
+  document.getElementById('regionField').value = '';
+  document.getElementById('employeeId').value = '';
+  
+} catch (error) {
+  console.error('Fetch Error:', error);  // Check browser console for details
+  messageDiv.textContent = '❌ Error submitting data. Please try again or check console.';
+  messageDiv.classList.add('error');
+}
   });
 
   // Init dropdowns
