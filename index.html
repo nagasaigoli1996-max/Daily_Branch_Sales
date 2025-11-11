@@ -1695,8 +1695,16 @@ S Sreekanth,47048,Utukuru,2197,182197,Rajampeta
     employeeIdInput.value = selected.dataset.employeeId || '';
   });
 
+    let isSubmitting = false;
+  const submitBtn = document.querySelector('button[type="submit"]');
+
   document.getElementById('entryForm').addEventListener('submit', async e => {
     e.preventDefault();
+
+    if (isSubmitting) return; // Prevent multiple submissions
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
 
     const formData = {
       timestamp: new Date().toISOString(),
@@ -1719,43 +1727,45 @@ S Sreekanth,47048,Utukuru,2197,182197,Rajampeta
       transaction_id: document.getElementById('transactionId').value.trim()
     };
 
-    // Replace SCRIPT_URL with your Google App Script endpoint
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzaElUw5Leg52iV71sqzSeODwjY5PvAoBXa2J11vhz_2SxWZHp-CjeaJ108pD72YvLOZw/exec';
 
     try {
-  // Convert formData to URLSearchParams for better CORS compatibility
-  const params = new URLSearchParams();
-  Object.keys(formData).forEach(key => {
-    params.append(key, formData[key] || '');
-  });
+      const params = new URLSearchParams();
+      Object.keys(formData).forEach(key => {
+        params.append(key, formData[key] || '');
+      });
 
-  const response = await fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',  // Key fix: Allows cross-origin without reading response
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: params
-  });
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params
+      });
 
-  // With no-cors, we can't read response, but assume success if no error
-  messageDiv.textContent = '✅ Submission successful! Data saved to SUD MIS System.';
-  messageDiv.classList.remove('error');
-  
-  // Reset form
-  e.target.reset();
-  populateRegions();  // Re-init dropdowns
-  // Clear readonly fields
-  document.getElementById('branchName').value = '';
-  document.getElementById('compositeCode').value = '';
-  document.getElementById('regionField').value = '';
-  document.getElementById('employeeId').value = '';
-  
-} catch (error) {
-  console.error('Fetch Error:', error);  // Check browser console for details
-  messageDiv.textContent = '❌ Error submitting data. Please try again or check console.';
-  messageDiv.classList.add('error');
-}
+      messageDiv.textContent = 'Submission successful! Data saved to SUD MIS System.';
+      messageDiv.classList.remove('error');
+
+      // Wait 10 seconds before re-enabling
+      setTimeout(() => {
+        e.target.reset();
+        populateRegions();
+        document.getElementById('branchName').value = '';
+        document.getElementById('compositeCode').value = '';
+        document.getElementById('regionField').value = '';
+        document.getElementById('employeeId').value = '';
+        submitBtn.textContent = 'Submit';
+        submitBtn.disabled = false;
+        isSubmitting = false;
+      }, 10000); // 10 seconds
+
+    } catch (error) {
+      console.error('Fetch Error:', error);
+      messageDiv.textContent = 'Error submitting data. Please try again.';
+      messageDiv.classList.add('error');
+      submitBtn.textContent = 'Submit';
+      submitBtn.disabled = false;
+      isSubmitting = false;
+    }
   });
 
   // Init dropdowns
